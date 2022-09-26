@@ -95,58 +95,60 @@ public class Field extends Canvas {
 	     * soit environ 60 fois par seconde.
 	     * 
 	     */
-	    new AnimationTimer() 
-	    {
-	        public void handle(long currentNanoTime)
-	        {	 
-	            // On nettoie le canvas a chaque frame
-	            gc.setFill( Color.LIGHTGRAY);
-	            gc.fillRect(0, 0, width, height);
-	        	
-	            // Deplacement et affichage des joueurs
-	        	for (int i = 0; i < joueurs.length; i++) 
-	    	    {
-	        		if (i==0 && input.contains("LEFT"))
-	        		{
-	        			joueurs[i].moveLeft();
-	        		} 
-	        		if (i==0 && input.contains("RIGHT")) 
-	        		{
-	        			joueurs[i].moveRight();	        			
-	        		}
-	        		if (i==0 && input.contains("UP"))
-	        		{
-	        			joueurs[i].turnLeft();
-	        		} 
-	        		if (i==0 && input.contains("DOWN")) 
-	        		{
-	        			joueurs[i].turnRight();	        			
-	        		}
-	        		if (i==1 && input.contains("A"))
-	        		{
-	        			joueurs[i].moveLeft();
-	        		} 
-	        		if (i==1 && input.contains("D")) 
-	        		{
-	        			joueurs[i].moveRight();	        			
-	        		}
-	        		if (i==1 && input.contains("W"))
-	        		{
-	        			joueurs[i].turnLeft();
-	        		} 
-	        		if (i==1 && input.contains("S")) 
-	        		{
-	        			joueurs[i].turnRight();	        			
-	        		}
-	        		if (input.contains("SPACE")){
-	        			joueurs[i].shoot();
+		new AnimationTimer()
+		{
+			public void handle(long currentNanoTime)
+			{
+				// On nettoie le canvas a chaque frame
+				gc.setFill( Color.LIGHTGRAY);
+				gc.fillRect(0, 0, width, height);
+
+				// Deplacement et affichage des joueurs
+				for (int i = 0; i < joueurs.length; i++)
+				{
+					{
+						if (i==0 && input.contains("LEFT"))
+							joueurs[i].moveLeft();
+					}
+					if (i==0 && input.contains("RIGHT"))
+					{
+						joueurs[i].moveRight();
+					}
+					if (i==0 && input.contains("UP"))
+					{
+						joueurs[i].turnLeft();
+					}
+					if (i==0 && input.contains("DOWN"))
+					{
+						joueurs[i].turnRight();
+					}
+					if (i==1 && input.contains("Q"))
+					{
+						joueurs[i].moveLeft();
+					}
+					if (i==1 && input.contains("D"))
+					{
+						joueurs[i].moveRight();
+					}
+					if (i==1 && input.contains("Z"))
+					{
+						joueurs[i].turnLeft();
+					}
+					if (i==1 && input.contains("S"))
+					{
+						joueurs[i].turnRight();
+					}
+					if (i==1 && input.contains("SPACE")){
+						joueurs[i].shoot();
+					}
+					if (i==0 && input.contains("ENTER")){
+						joueurs[i].shoot();
 					}
 
-	        		
-	        		joueurs[i].display();
-	    	    }
-	    	}
-	     }.start(); // On lance la boucle de rafraichissement 
+					joueurs[i].display();
+				}
+			}
+		}.start(); // On lance la boucle de rafraichissement
 	     
 	}
 
