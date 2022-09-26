@@ -18,7 +18,8 @@ import javafx.scene.paint.Color;
 public class Field extends Canvas {
 	
 	/** Joueurs */
-	Player [] joueurs = new Player[2];
+	Player [] joueurs = new Player[1];
+	IA [] ennemis = new IA[2];
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
 	/** Tableau traçant les evenements */
@@ -51,8 +52,10 @@ public class Field extends Canvas {
     	joueurs[0] = new Player(gc, colorMap[0], w/2, h-50, "bottom");
     	joueurs[0].display();
 
-    	joueurs[1] = new Player(gc, colorMap[1], w/2, 20, "top");
-    	joueurs[1].display();
+    	ennemis[0] = new IA(gc, colorMap[1], w/3, 20, "top");
+		ennemis[0].display();
+		ennemis[1] = new IA(gc, colorMap[1], w/2, 20, "top");
+		ennemis[1].display();
 
 
 	    /** 
@@ -154,5 +157,9 @@ public class Field extends Canvas {
 
 	public Player[] getJoueurs() {
 		return joueurs;
+	}
+
+	public IA[] getIA() {
+		return ennemis;
 	}
 }
