@@ -18,8 +18,9 @@ import javafx.scene.paint.Color;
 public class Field extends Canvas {
 	
 	/** Joueurs */
-	Player [] joueurs = new Player[1];
+	Human [] joueurs = new Human[1];
 	IA [] ennemis = new IA[2];
+
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
 	/** Tableau traçant les evenements */
@@ -33,7 +34,7 @@ public class Field extends Canvas {
     /**
      * Canvas dans lequel on va dessiner le jeu.
      * 
-     * @param scene Scene principale du jeu a laquelle on va ajouter notre Canvas
+     * @param scene Scene principale du jeu à laquelle on va ajouter notre Canvas
      * @param w largeur du canvas
      * @param h hauteur du canvas
      */
@@ -49,7 +50,7 @@ public class Field extends Canvas {
         gc = this.getGraphicsContext2D();
         
         /** On initialise le terrain de jeu */
-    	joueurs[0] = new Player(gc, colorMap[0], w/2, h-50, "bottom");
+    	joueurs[0] = new Human(gc, colorMap[0], w/2, h-50, "bottom");
     	joueurs[0].display();
 
     	ennemis[0] = new IA(gc, colorMap[1], w/3, 20, "top");
@@ -60,7 +61,7 @@ public class Field extends Canvas {
 
 	    /** 
 	     * Event Listener du clavier 
-	     * quand une touche est pressee on la rajoute a la liste d'input
+	     * quand une touche est pressee on la rajoute à la liste d'input
 	     *   
 	     */
 	    this.setOnKeyPressed(
@@ -77,7 +78,7 @@ public class Field extends Canvas {
 
 	    /** 
 	     * Event Listener du clavier 
-	     * quand une touche est relachee on l'enleve de la liste d'input
+	     * quand une touche est relachee on l'enlève de la liste d'input
 	     *   
 	     */
 	    this.setOnKeyReleased(
@@ -94,7 +95,7 @@ public class Field extends Canvas {
 	     * 
 	     * Boucle principale du jeu
 	     * 
-	     * handle() est appelee a chaque rafraichissement de frame
+	     * handle() est appelee à chaque rafraichissement de frame
 	     * soit environ 60 fois par seconde.
 	     * 
 	     */
@@ -102,7 +103,6 @@ public class Field extends Canvas {
 		{
 			public void handle(long currentNanoTime)
 			{
-				// On nettoie le canvas a chaque frame
 				gc.setFill( Color.LIGHTGRAY);
 				gc.fillRect(0, 0, width, height);
 
