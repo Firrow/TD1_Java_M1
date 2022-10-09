@@ -6,17 +6,66 @@ import javafx.geometry.*;
 import javafx.scene.image.*;
 import javafx.util.Duration;
 
-class Sprite extends ImageView {
+public class Sprite extends ImageView {
     private final Rectangle2D[] walkClips;
     private final Rectangle2D[] shootClips;
     private int numCells;
     private int numCellsWalk;
     private int numCellsShoot;
-    private final Timeline walkTimeline;
-    private final IntegerProperty frameCounter = new SimpleIntegerProperty(0);
-    private final Timeline shootTimeline;
+    private Timeline walkTimeline;
+    private IntegerProperty frameCounter = new SimpleIntegerProperty(0);
+    private Timeline shootTimeline;
     private Timeline timeline;
     public boolean isRunning;
+
+
+
+
+
+    public Rectangle2D[] getWalkClips() {
+        return walkClips;
+    }
+    public Rectangle2D[] getShootClips() {
+        return shootClips;
+    }
+    public int getNumCells() {
+        return numCells;
+    }
+    public int getNumCellsWalk() {
+        return numCellsWalk;
+    }
+    public int getNumCellsShoot() {
+        return numCellsShoot;
+    }
+    public Timeline getWalkTimeline() {
+        return walkTimeline;
+    }
+
+    public int getFrameCounter() {
+        return frameCounter.get();
+    }
+    public void setFrameCounter(int frameCounter) {
+        this.frameCounter.set(frameCounter);
+    }
+
+
+    public IntegerProperty frameCounterProperty() {
+        return frameCounter;
+    }
+
+    public Timeline getShootTimeline() {
+        return shootTimeline;
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
+    }
+    public void setTimeline(Timeline timeline) {
+        this.timeline = timeline;
+    }
+
+
+
 
     public Sprite(Image animationImage, int numCells, int numRows, Duration frameTime, String side) {
         this.numCells = numCells;
@@ -71,6 +120,7 @@ class Sprite extends ImageView {
         isRunning = false;
     }
 
+    //J'ai pas tout compris ce qu'elle faisait
     public void playContinuously() {
         isRunning = true;
         frameCounter.set(0);
@@ -81,12 +131,12 @@ class Sprite extends ImageView {
     }
 
     public void playShoot(){
-        frameCounter.set(0);
-        timeline.stop();
-        timeline = shootTimeline;
-        timeline.setCycleCount(numCellsShoot);
-        timeline.setOnFinished(e -> playContinuously());
-        timeline.playFromStart();
+        setFrameCounter(0);
+        getTimeline().stop();
+        setTimeline(shootTimeline);
+        getTimeline().setCycleCount(numCellsShoot);
+        getTimeline().setOnFinished(e -> playContinuously());
+        getTimeline().playFromStart();
     }
 
     public void stop() {

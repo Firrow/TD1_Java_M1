@@ -1,6 +1,9 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 
+//import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
+import fr.icom.info.m1.balleauprisonnier_mvn.Sprite;
+import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.transform.Rotate;
 import javafx.scene.image.Image;
@@ -16,38 +19,37 @@ import java.util.Random;
  */
 public class Player 
 {
-	  double x;       // position horizontale du joueur
-	  final double y; 	  // position verticale du joueur
-	  double angle = 90; // rotation du joueur, devrait toujour être en 0 et 180
-	  double step;    // pas d'un joueur
-	  String playerColor;
-	  
-	  // On une image globale du joueur 
-	  Image directionArrow;
-	  Sprite sprite;
-	  ImageView PlayerDirectionArrow;
-	  
-	  GraphicsContext graphicsContext;
-	  
-	  /**
-	   * Constructeur du Joueur
-	   * 
-	   * @param gc ContextGraphic dans lequel on va afficher le joueur
-	   * @param color couleur du joueur
-	   * @param yInit position verticale
-	   */
-	  Player(GraphicsContext gc, String color, int xInit, int yInit, String side)
+
+	private double x;       // position horizontale du joueur
+	private double y;		  // position verticale du joueur
+	//double x;
+	//final double y; 	  // position verticale du joueur
+	private double angle = 90; // rotation du joueur, devrait toujours être en 0 et 180
+	private double step;    // pas d'un joueur
+	private String playerColor;
+
+	// On une image globale du joueur
+	private Image directionArrow;
+	private ImageView PlayerDirectionArrow;
+
+	private GraphicsContext graphicsContext;
+	private PlayerVue playerVue;
+
+
+	  Player(GraphicsContext gc, String color, int xInit, int yInit, String side, PlayerVue playerVue)
 	  {
 		// Tous les joueurs commencent au centre du canvas, 
 	    x = xInit;               
 	    y = yInit;
 	    graphicsContext = gc;
 	    playerColor=color;
-	    
+
+	    this.playerVue = playerVue; //accéder au PlayerVue
+
 	    angle = 0;
 
 	    // On charge la representation du joueur
-        if(side=="top"){
+        if(side.equals("top")){
         	directionArrow = new Image("assets/PlayerArrowDown.png");
 		}
 		else{
@@ -61,16 +63,13 @@ public class Player
         PlayerDirectionArrow.setSmooth(true);
         PlayerDirectionArrow.setCache(true);
 
-        Image tilesheetImage = new Image("assets/orc.png");
-        sprite = new Sprite(tilesheetImage, 0,0, Duration.seconds(.2), side);
-        sprite.setX(x);
-        sprite.setY(y);
+
         //directionArrow = sprite.getClip().;
 
 		  // Tous les joueurs ont une vitesse aleatoire entre 0.0 et 1.0
-		  Random randomGenerator = new Random();
+		  /*Random randomGenerator = new Random();
 		  step = randomGenerator.nextFloat();
-		  System.out.print("Vitesse joueur 1 : " + step);
+		  System.out.print("Vitesse joueur 1 : " + step);*/
 
         // Pour commencer les joueurs ont une vitesse / un pas fixe
         step = 1;
@@ -80,7 +79,7 @@ public class Player
 	  /**
 	   *  Affichage du joueur
 	   */
-	  void display()
+	  public void display()
 	  {
 		  graphicsContext.save(); // saves the current state on stack, including the current transform
 	      rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
@@ -97,11 +96,11 @@ public class Player
 	   *  Deplacement du joueur vers la gauche, on cantonne le joueur sur le plateau de jeu
 	   */
 	 
-	  void moveLeft() 
+	  public void moveLeft()
 	  {	    
-	    if (x > 10 && x < 520) 
+	    if (x > 10)
 	    {
-			spriteAnimate();
+			playerVue.spriteAnimate(this);
 		    x -= step;
 	    }
 	  }
@@ -109,11 +108,11 @@ public class Player
 	  /**
 	   *  Deplacement du joueur vers la droite
 	   */
-	  void moveRight() 
+	  public void moveRight()
 	  {
-	    if (x > 10 && x < 520) 
+	    if (x < 520)
 	    {
-			spriteAnimate();
+			playerVue.spriteAnimate(this);
 		    x += step;
 	    }
 	  }
@@ -122,52 +121,50 @@ public class Player
 	  /**
 	   *  Rotation du joueur vers la gauche
 	   */
-	  void turnLeft() 
+	  public void turnLeft()
 	  {
-	    if (angle > 0 && angle < 180) 
-	    {
-	    	angle += 1;
-	    }
-	    else {
-	    	angle += 1;
-	    }
-
+		  angle += 1;
 	  }
-
-	  
 	  /**
 	   *  Rotation du joueur vers la droite
 	   */
-	  void turnRight() 
+	  public void turnRight()
 	  {
-	    if (angle > 0 && angle < 180) 
-	    {
-	    	angle -=1;
-	    }
-	    else {
-	    	angle -= 1;
-	    }
+		  angle -= 1;
 	  }
 
 
-	  void shoot(){
-	  	sprite.playShoot();
+	  public void shoot(){
+	  	playerVue.getSprite().playShoot();
 	  }
 	  
 	  /**
 	   *  Deplacement en mode boost
 	   */
-	  void boost() 
+	  public void boost()
 	  {
 	    x += step*2;
-		  spriteAnimate();
+		playerVue.spriteAnimate(this);
 	  }
 
-	  void spriteAnimate(){
-	  	  //System.out.println("Animating sprite");
-		  if(!sprite.isRunning) {sprite.playContinuously();}
-		  sprite.setX(x);
-		  sprite.setY(y);
-	  }
-	  
+	public double getX() {
+		  return this.x;
+	}
+
+	public double setX() {
+		return this.x = x;
+	}
+
+	public double getY() {
+		  return this.y;
+	}
+
+	public double setY() {
+		return this.y = y;
+	}
+
+	public Sprite getSprite() {
+		return this.playerVue.getSprite();
+	}
+
 }

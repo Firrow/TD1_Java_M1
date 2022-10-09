@@ -3,13 +3,19 @@ package fr.icom.info.m1.balleauprisonnier_mvn;
 
 import java.util.ArrayList;
 
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Human;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.IA;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
+import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 /**
  * Classe gerant le terrain de jeu.
@@ -18,8 +24,8 @@ import javafx.scene.paint.Color;
 public class Field extends Canvas {
 	
 	/** Joueurs */
-	Human [] joueurs = new Human[1];
-	IA [] ennemis = new IA[2];
+	Human[] joueurs = new Human[1];
+	IA[] ennemis = new IA[2];
 
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
@@ -48,14 +54,34 @@ public class Field extends Canvas {
 		this.setFocusTraversable(true);
 		
         gc = this.getGraphicsContext2D();
-        
+
+
+		Image commonImage = new Image("assets/orc.png");
+
+		Sprite spriteHuman = new Sprite(commonImage, 0,0, Duration.seconds(.2), "bottom");
+		spriteHuman.setX(w/2);
+		spriteHuman.setY(h-50);
+
+		Sprite spriteIA0 = new Sprite(commonImage, 0,0, Duration.seconds(.2), "top");
+		spriteIA0.setX(w/3);
+		spriteIA0.setY(20);
+
+		Sprite spriteIA1 = new Sprite(commonImage, 0,0, Duration.seconds(.2), "top");
+		spriteIA1.setX(w/2);
+		spriteIA1.setY(20);
+
+
         /** On initialise le terrain de jeu */
-    	joueurs[0] = new Human(gc, colorMap[0], w/2, h-50, "bottom");
+		PlayerVue playerVueHuman = new PlayerVue(spriteHuman);
+		PlayerVue playerVueIA0 = new PlayerVue(spriteIA0);
+		PlayerVue playerVueIA1 = new PlayerVue(spriteIA1);
+
+		joueurs[0] = new Human(gc, colorMap[0], w/2, h-50, "bottom", playerVueHuman);
     	joueurs[0].display();
 
-    	ennemis[0] = new IA(gc, colorMap[1], w/3, 20, "top");
+    	ennemis[0] = new IA(gc, colorMap[1], w/3, 20, "top", playerVueIA0);
 		ennemis[0].display();
-		ennemis[1] = new IA(gc, colorMap[1], w/2, 20, "top");
+		ennemis[1] = new IA(gc, colorMap[1], w/2, 20, "top", playerVueIA1);
 		ennemis[1].display();
 
 
@@ -162,4 +188,5 @@ public class Field extends Canvas {
 	public IA[] getIA() {
 		return ennemis;
 	}
+	//public Human[] getHuman() {return joueurs;}
 }
