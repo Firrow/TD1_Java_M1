@@ -2,15 +2,12 @@ package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 
 //import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
-import fr.icom.info.m1.balleauprisonnier_mvn.Sprite;
+import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Sprite;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.transform.Rotate;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
-
-import java.util.Random;
 
 /**
  * 

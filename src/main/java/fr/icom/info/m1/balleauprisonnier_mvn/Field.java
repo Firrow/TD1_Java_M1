@@ -7,6 +7,7 @@ import fr.icom.info.m1.balleauprisonnier_mvn.Model.Human;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.IA;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
+import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Sprite;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
