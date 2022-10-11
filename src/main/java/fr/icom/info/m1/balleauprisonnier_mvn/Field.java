@@ -73,17 +73,17 @@ public class Field extends Canvas {
 
 
         /** On initialise le terrain de jeu */
-		PlayerVue playerVueHuman = new PlayerVue(spriteHuman);
-		PlayerVue playerVueIA0 = new PlayerVue(spriteIA0);
-		PlayerVue playerVueIA1 = new PlayerVue(spriteIA1);
+		PlayerVue playerVueHuman = new PlayerVue(spriteHuman, gc, "bottom", 0, w/2, h-50);
+		PlayerVue playerVueIA0 = new PlayerVue(spriteIA0, gc, "top",0, w/3, 20);
+		PlayerVue playerVueIA1 = new PlayerVue(spriteIA1, gc, "top", 0, w/2, 20);
 
-		joueurs[0] = new Human(gc, colorMap[0], w/2, h-50, "bottom", playerVueHuman);
-    	joueurs[0].display();
+		joueurs[0] = new Human(gc, w/2, h-50, playerVueHuman);
+    	playerVueHuman.display(joueurs[0]);
 
-    	ennemis[0] = new IA(gc, colorMap[1], w/3, 20, "top", playerVueIA0);
-		ennemis[0].display();
-		ennemis[1] = new IA(gc, colorMap[1], w/2, 20, "top", playerVueIA1);
-		ennemis[1].display();
+    	ennemis[0] = new IA(gc, w/3, 20, playerVueIA0);
+		playerVueIA0.display(ennemis[0]);
+		ennemis[1] = new IA(gc, w/2, 20, playerVueIA1);
+		playerVueIA1.display(ennemis[1]);
 
 
 	    /** 
@@ -129,7 +129,7 @@ public class Field extends Canvas {
 		new AnimationTimer()
 		{
 			public void handle(long currentNanoTime)
-			{
+			{ //fonction anonyme
 				gc.setFill( Color.LIGHTGRAY);
 				gc.fillRect(0, 0, width, height);
 
@@ -175,7 +175,7 @@ public class Field extends Canvas {
 						joueurs[i].shoot();
 					}
 
-					joueurs[i].display();
+					playerVueHuman.display(joueurs[i]);
 				}
 			}
 		}.start(); // On lance la boucle de rafraichissement

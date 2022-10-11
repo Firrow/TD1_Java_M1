@@ -41,22 +41,21 @@ public class Sprite extends ImageView {
         return walkTimeline;
     }
 
+
+
+
     public int getFrameCounter() {
         return frameCounter.get();
     }
     public void setFrameCounter(int frameCounter) {
         this.frameCounter.set(frameCounter);
     }
-
-
     public IntegerProperty frameCounterProperty() {
         return frameCounter;
     }
-
     public Timeline getShootTimeline() {
         return shootTimeline;
     }
-
     public Timeline getTimeline() {
         return timeline;
     }

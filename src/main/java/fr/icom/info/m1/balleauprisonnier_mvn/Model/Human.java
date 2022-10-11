@@ -5,16 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Human extends Player {
 
-    /**
-     * Constructeur du Joueur
-     *
-     * @param gc    ContextGraphic dans lequel on va afficher le joueur
-     * @param color couleur du joueur
-     * @param xInit
-     * @param yInit position verticale
-     * @param side
-     */
-    public Human(GraphicsContext gc, String color, int xInit, int yInit, String side, PlayerVue playerVue) {
-        super(gc, color, xInit, yInit, side, playerVue);
+    public Human(GraphicsContext gc, int xInit, int yInit, PlayerVue playerVue) {
+        super(gc, xInit, yInit, playerVue);
     }
 }
