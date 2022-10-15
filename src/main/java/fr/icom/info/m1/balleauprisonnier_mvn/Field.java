@@ -30,8 +30,6 @@ public class Field extends Canvas {
 
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
-	/** Tableau traçant les evenements */
-    ArrayList<String> input = new ArrayList<String>();
     
 
     final GraphicsContext gc;
@@ -85,101 +83,6 @@ public class Field extends Canvas {
 		ennemis[1] = new IA(gc, w/2, 20, playerVueIA1);
 		playerVueIA1.display(ennemis[1]);
 
-
-	    /** 
-	     * Event Listener du clavier 
-	     * quand une touche est pressee on la rajoute à la liste d'input
-	     *   
-	     */
-	    this.setOnKeyPressed(
-	    		new EventHandler<KeyEvent>()
-	    	    {
-	    	        public void handle(KeyEvent e)
-	    	        {
-	    	            String code = e.getCode().toString();
-	    	            // only add once... prevent duplicates
-	    	            if ( !input.contains(code) )
-	    	                input.add( code );
-	    	        }
-	    	    });
-
-	    /** 
-	     * Event Listener du clavier 
-	     * quand une touche est relachee on l'enlève de la liste d'input
-	     *   
-	     */
-	    this.setOnKeyReleased(
-	    	    new EventHandler<KeyEvent>()
-	    	    {
-	    	        public void handle(KeyEvent e)
-	    	        {
-	    	            String code = e.getCode().toString();
-	    	            input.remove( code );
-	    	        }
-	    	    });
-	    
-	    /** 
-	     * 
-	     * Boucle principale du jeu
-	     * 
-	     * handle() est appelee à chaque rafraichissement de frame
-	     * soit environ 60 fois par seconde.
-	     * 
-	     */
-		new AnimationTimer()
-		{
-			public void handle(long currentNanoTime)
-			{ //fonction anonyme
-				gc.setFill( Color.LIGHTGRAY);
-				gc.fillRect(0, 0, width, height);
-
-				// Deplacement et affichage des joueurs
-				for (int i = 0; i < joueurs.length; i++)
-				{
-					{
-						if (i==0 && input.contains("LEFT"))
-							joueurs[i].moveLeft();
-					}
-					if (i==0 && input.contains("RIGHT"))
-					{
-						joueurs[i].moveRight();
-					}
-					if (i==0 && input.contains("UP"))
-					{
-						joueurs[i].turnLeft();
-					}
-					if (i==0 && input.contains("DOWN"))
-					{
-						joueurs[i].turnRight();
-					}
-					if (i==1 && input.contains("Q"))
-					{
-						joueurs[i].moveLeft();
-					}
-					if (i==1 && input.contains("D"))
-					{
-						joueurs[i].moveRight();
-					}
-					if (i==1 && input.contains("Z"))
-					{
-						joueurs[i].turnLeft();
-					}
-					if (i==1 && input.contains("S"))
-					{
-						joueurs[i].turnRight();
-					}
-					if (i==1 && input.contains("SPACE")){
-						joueurs[i].shoot();
-					}
-					if (i==0 && input.contains("ENTER")){
-						joueurs[i].shoot();
-					}
-
-					playerVueHuman.display(joueurs[i]);
-				}
-			}
-		}.start(); // On lance la boucle de rafraichissement
-	     
 	}
 
 	public Player[] getJoueurs() {
