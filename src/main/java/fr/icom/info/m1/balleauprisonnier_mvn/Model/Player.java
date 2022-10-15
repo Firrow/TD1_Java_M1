@@ -17,10 +17,14 @@ public class Player
 	private double step;    // pas d'un joueur
 	private PlayerVue playerVue;
 
+
 	private GraphicsContext gc;
 	private double angle;
 
 
+	public PlayerVue getPlayerVue() {
+		return playerVue;
+	}
 
 	public Player(GraphicsContext gc, int xInit, int yInit, PlayerVue playerVue)
 	{

@@ -84,6 +84,12 @@ public class Field extends Canvas {
 		playerVueIA1.display(ennemis[1]);
 
 	}
+	
+	
+	public void display(){
+        gc.setFill( Color.LIGHTGRAY);
+        gc.fillRect(0, 0, width, height);
+	}
 
 	public Player[] getJoueurs() {
 		return joueurs;

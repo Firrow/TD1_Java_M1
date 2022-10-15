@@ -1,8 +1,8 @@
-package fr.icom.info.m1.balleauprisonnier_mvn.Controller;
+package fr.icom.info.m1.balleauprisonnier_mvn;
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
-import fr.icom.info.m1.balleauprisonnier_mvn.Model.PlayerVue;
-import fr.icom.info.m1.balleauprisonnier_mvn.Model.Field;
+import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
+import fr.icom.info.m1.balleauprisonnier_mvn.Field;
 
 import java.util.ArrayList;
 
@@ -115,7 +115,7 @@ public class Evenements extends Canvas {
 					}
 
 	        		
-	        		joueurs[i].display();
+	        		joueurs[i].getPlayerVue().display(joueurs[i]);
 	    	    }
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement 
