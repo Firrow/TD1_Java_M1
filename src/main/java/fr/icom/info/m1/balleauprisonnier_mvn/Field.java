@@ -25,14 +25,19 @@ import javafx.util.Duration;
 public class Field extends Canvas {
 	
 	/** Joueurs */
-	Human[] joueurs = new Human[1];
-	IA[] ennemis = new IA[2];
+	/*Human[] joueurs = new Human[1];
+	IA[] ennemis = new IA[2];*/
 
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
-    
 
-    final GraphicsContext gc;
+
+	private GraphicsContext gc;
+	public GraphicsContext getGc() {
+		return gc;
+	}
+
+
     final int width;
     final int height;
     
@@ -50,9 +55,9 @@ public class Field extends Canvas {
 		height = h;
 		
 		/** permet de capturer le focus et donc les evenements clavier et souris */
-		this.setFocusTraversable(true);
+		this.setFocusTraversable(true);//???
 		
-        gc = this.getGraphicsContext2D();
+        /*gc = this.getGraphicsContext2D();
 
 
 		Image commonImage = new Image("assets/orc.png");
@@ -67,11 +72,11 @@ public class Field extends Canvas {
 
 		Sprite spriteIA1 = new Sprite(commonImage, 0,0, Duration.seconds(.2), "top");
 		spriteIA1.setX(w/2);
-		spriteIA1.setY(20);
+		spriteIA1.setY(20);*/
 
 
         /** On initialise le terrain de jeu */
-		PlayerVue playerVueHuman = new PlayerVue(spriteHuman, gc, "bottom", 0, w/2, h-50);
+		/*PlayerVue playerVueHuman = new PlayerVue(spriteHuman, gc, "bottom", 0, w/2, h-50);
 		PlayerVue playerVueIA0 = new PlayerVue(spriteIA0, gc, "top",0, w/3, 20);
 		PlayerVue playerVueIA1 = new PlayerVue(spriteIA1, gc, "top", 0, w/2, 20);
 
@@ -81,7 +86,7 @@ public class Field extends Canvas {
     	ennemis[0] = new IA(gc, w/3, 20, playerVueIA0);
 		playerVueIA0.display(ennemis[0]);
 		ennemis[1] = new IA(gc, w/2, 20, playerVueIA1);
-		playerVueIA1.display(ennemis[1]);
+		playerVueIA1.display(ennemis[1]);*/
 
 	}
 	
@@ -90,13 +95,4 @@ public class Field extends Canvas {
         gc.setFill( Color.LIGHTGRAY);
         gc.fillRect(0, 0, width, height);
 	}
-
-	public Player[] getJoueurs() {
-		return joueurs;
-	}
-
-	public IA[] getIA() {
-		return ennemis;
-	}
-	//public Human[] getHuman() {return joueurs;}
 }

@@ -1,6 +1,7 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_mvn.Controller;
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
+import fr.icom.info.m1.balleauprisonnier_mvn.Vue.GameVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Field;
 
@@ -17,9 +18,10 @@ public class Evenements extends Canvas {
 	
 	/** Tableau tracant les evenements */
     ArrayList<String> input = new ArrayList<String>();
-
+	private GameVue gv;
     
-	public Evenements(Field field, Player[] joueurs) {
+	public Evenements(Field field, Player[] joueurs, GameVue gameVue) {
+		this.gv = gameVue;
 
 	    /** 
 	     * Event Listener du clavier 
@@ -75,9 +77,10 @@ public class Evenements extends Canvas {
 	            // Deplacement et affichage des joueurs
 	        	for (int i = 0; i < joueurs.length; i++) 
 	    	    {
-	        		if (i==0 && input.contains("LEFT"))
+					gameVue.getInput(i, input);
+	        		/*if (i==0 && input.contains("LEFT")) //GameVue (dans une fonction)
 	        		{
-	        			joueurs[i].moveLeft();
+	        			joueurs[i].moveLeft(); //Appelle Evenement qui va appeler Player.left() (Model)
 	        		} 
 	        		if (i==0 && input.contains("RIGHT")) 
 	        		{
@@ -112,7 +115,7 @@ public class Evenements extends Canvas {
 	        		}
 	        		if (i==1 && input.contains("SPACE")){
 	        			joueurs[i].shoot();
-					}
+					}*/
 
 	        		
 	        		joueurs[i].getPlayerVue().display(joueurs[i]);
