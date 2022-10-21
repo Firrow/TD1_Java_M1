@@ -35,7 +35,7 @@ public class App extends Application
 		root.getChildren().add(gameField.getJoueurs()[0].getSprite());
 		root.getChildren().add(gameField.getIA()[0].getSprite());
 		root.getChildren().add(gameField.getIA()[1].getSprite());
-
+		Evenements evenements = new Evenements(gameField, gameField.getJoueurs());
         // On ajoute la scene a la fenetre et on affiche
         stage.setScene( scene );
         stage.show();

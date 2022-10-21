@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+D:\Users\LinaB\Documents\TD1_Java_M1-main\.metadata\.plugins\org.eclipse.jdt.core
