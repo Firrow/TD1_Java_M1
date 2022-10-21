@@ -88,7 +88,7 @@ public class Player
 
 	public void boost()
 	{
-	x += step*2;
-	playerVue.spriteAnimate(this);
+		x += step*2;
+		playerVue.spriteAnimate(this);
 	}
 }
