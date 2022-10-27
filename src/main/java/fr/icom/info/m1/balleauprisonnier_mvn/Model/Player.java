@@ -87,7 +87,8 @@ public class Player
 
 
 	public void shoot(){
-	playerVue.getSprite().playShoot();
+		playerVue.getSprite().playShoot();
+		//création
 	}
 
 	public void boost()

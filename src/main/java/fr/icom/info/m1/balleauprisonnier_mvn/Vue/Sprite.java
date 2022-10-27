@@ -119,7 +119,7 @@ public class Sprite extends ImageView {
         isRunning = false;
     }
 
-    //J'ai pas tout compris ce qu'elle faisait
+
     public void playContinuously() {
         isRunning = true;
         frameCounter.set(0);
