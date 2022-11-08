@@ -1,4 +1,33 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Vue;
 
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.transform.Rotate;
+
+
 public class ProjectileVue {
+	
+  public Image projectileImg;
+  public GraphicsContext gc;
+  
+  public ProjectileVue(GraphicsContext gc){
+      this.gc = gc;
+      projectileImg = new Image("assets/ball.png");
+  }
+  
+  public void display(Projectile projectile) {
+
+      gc.save(); // saves the current state on stack, including the current transform
+      //rotate(gc, projectile.getDirection(), projectile.getX(), projectile.getY());
+      gc.drawImage(projectileImg, projectile.getX(), projectile.getY());
+      gc.restore(); // back to original state (before rotation)
+  }
+  
+
+  private void rotate(GraphicsContext gc, double angle, double px, double py) {
+      Rotate r = new Rotate(angle, px, py);
+      gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+  }
 }

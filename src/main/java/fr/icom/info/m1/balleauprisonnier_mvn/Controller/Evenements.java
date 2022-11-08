@@ -1,6 +1,7 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Controller;
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.GameVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Field;
 
@@ -18,7 +19,7 @@ public class Evenements extends Canvas {
     ArrayList<String> input = new ArrayList<String>();
 	private GameVue gv;
     
-	public Evenements(Field field, Player[] joueurs, GameVue gameVue) {
+	public Evenements(Field field, Player[] joueurs, Projectile projectile, GameVue gameVue) {
 		this.gv = gameVue;
 
 	    /** 
@@ -75,6 +76,7 @@ public class Evenements extends Canvas {
 	        		joueurs[i].getPlayerVue().display(joueurs[i]);
 					//si joueur a projectile
 	    	    }
+	        	projectile.getVue().display(projectile);
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement
 	}

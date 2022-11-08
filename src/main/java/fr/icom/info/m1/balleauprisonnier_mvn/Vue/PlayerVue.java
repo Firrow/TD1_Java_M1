@@ -81,7 +81,7 @@ public class PlayerVue {
     public void display(Player player)
     {
         //System.out.println("called in display");
-        System.out.println(player.getAngle());
+//        System.out.println(player.getAngle());
 
         gc.save(); // saves the current state on stack, including the current transform
         rotate(gc, player.getAngle(), player.getX() + dirArrowPlayer.getWidth() / 2, player.getY() + dirArrowPlayer.getHeight() / 2);

@@ -6,6 +6,9 @@ import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Field;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Sprite;
+import fr.icom.info.m1.balleauprisonnier_mvn.Vue.ProjectileVue;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
+
 
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
@@ -27,8 +30,10 @@ public class Game {
     }
     public IA[] getIA() {return enemies;}
     public Human[] getHuman() {return humans;}
+    public Projectile getProjectile() {return projectile;}
 
     Field field;
+    Projectile projectile;
     private double width;
     private double height;
     private GraphicsContext gc;
@@ -44,6 +49,7 @@ public class Game {
         for(IA ia : enemies){
             players.add(ia);
         }
+
         this.field=field;
         this.gc = field.getGraphicsContext2D();
         this.field = new Field(scene, (int)width, (int)height);
@@ -79,5 +85,14 @@ public class Game {
         playerVueIA0.display(enemies[0]);
         enemies[1] = new IA(gc, (int)width/2, 20, playerVueIA1);
         playerVueIA1.display(enemies[1]);
+        
+        ProjectileVue projectileVue= new ProjectileVue(gc);
+        
+        //this.projectile = new Projectile(humans[0].getX(), humans[0].getY()-50, 2, projectileVue);
+        this.projectile = Projectile.getInstance();
+        projectile.setX(humans[0].getX());
+        projectile.setY(humans[0].getY()-50);
+        projectile.setVue(projectileVue);
+        projectileVue.display(projectile);
     }
 }
