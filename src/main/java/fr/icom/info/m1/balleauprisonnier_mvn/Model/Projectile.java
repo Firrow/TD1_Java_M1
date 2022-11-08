@@ -38,7 +38,7 @@ public class Projectile {
 	*/
 
 	private Projectile() {
-		this.vitesse=1.5;
+		this.vitesse=2.5;
 		direction=0;
 		moving=false;
 		
@@ -53,7 +53,6 @@ public class Projectile {
 
 	
 	public void moveProjectile() {
-		 System.out.println(y+vitesse*Math.sin(direction));
 		this.x+=vitesse*Math.sin(Math.toRadians(direction));
 		this.y-=vitesse*Math.cos(Math.toRadians(direction));
 	}

@@ -87,6 +87,7 @@ public class Evenements extends Canvas {
 						playerToRemove.add(joueurs.get(i));
 					}
 	    	    }
+<<<<<<< HEAD
 //				for(Player player : playerToRemove){
 //					joueurs.remove(player);
 //				}
@@ -94,6 +95,10 @@ public class Evenements extends Canvas {
 	        	projectile.getVue().display(projectile);
 
 				removeDeadPlayers();
+=======
+	        	if((projectile)!=null)
+	        			projectile.getVue().display(projectile);
+>>>>>>> 215d877b36b41e06a39e4b7776a6520d2fe91537
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement
 	}

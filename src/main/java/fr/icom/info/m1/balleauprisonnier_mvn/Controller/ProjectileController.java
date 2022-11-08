@@ -1,28 +1,32 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Controller;
 
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.ProjectileVue;
+import javafx.scene.canvas.GraphicsContext;
 
 public class ProjectileController {
 	
-	private static ProjectileController singletonProjectileC;
-	private ProjectileController() {
+	private ProjectileVue projectileVue;
+	
+	public ProjectileController() {
 		
 	}
-	
-    public static ProjectileController getInstance()
-    {
-        if (singletonProjectileC == null)
-            singletonProjectileC = new ProjectileController();
-  
-        return singletonProjectileC;
-    }
     
-	public void startProjectile(Projectile projectile, ProjectileVue projectileVue, double angle) {
+	public void startProjectile(Projectile projectile, Player joueur, double angle, GraphicsContext gc) {
 		/*if(!projectile.getMoving()) {
 			projectile.setDirection(angle);
 	        projectile.setMoving(true);
 			}*/  //A décommenter
+        projectileVue= new ProjectileVue(gc);
+        
+        //this.projectile = new Projectile(humans[0].getX(), humans[0].getY()-50, 2, projectileVue);
+        projectile = Projectile.getInstance();
+        projectile.setX(joueur.getX());
+        projectile.setY(joueur.getY()-50);
+        projectile.setVue(projectileVue);
+        projectileVue.display(projectile);
+        
         projectile.setDirection(angle);
         projectile.setMoving(true);
 	}
