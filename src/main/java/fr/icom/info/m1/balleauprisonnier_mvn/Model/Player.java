@@ -20,11 +20,16 @@ public class Player
 
 	private GraphicsContext gc;
 	private double angle;
+	private boolean alive;
 
 
 	public PlayerVue getPlayerVue() {
 		return playerVue;
 	}
+	public boolean isAlive() {
+		return alive;
+	}
+
 
 	public Player(GraphicsContext gc, int xInit, int yInit, PlayerVue playerVue)
 	{
@@ -32,6 +37,7 @@ public class Player
 	x = xInit;
 	y = yInit;
 	gc = gc;
+	alive = true;
 
 	this.playerVue = playerVue; //accéder au PlayerVue
 
@@ -95,5 +101,10 @@ public class Player
 	{
 		x += step*2;
 		playerVue.spriteAnimate(this);
+	}
+
+	//Méthode qui supprime le joueur touché de la liste de joueur
+	public void killPlayer() {
+		alive = false;
 	}
 }

@@ -3,22 +3,28 @@ import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Game;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import fr.icom.info.m1.balleauprisonnier_mvn.Controller.ProjectileController;
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
 public class GameVue extends Group {
+    private final GraphicsContext gc;
     //récupérer input d'Evenement
     //i en argument depuis Evenement
     private Player[] joueurs;
     private Projectile projectile;
     private ProjectileController projectileController;
 
-    public GameVue(Player[] player)
+    public GameVue(Player[] player, GraphicsContext gc)
     {
         this.joueurs = player;
         this.projectile = Projectile.getInstance();
         this.projectileController = ProjectileController.getInstance();
+        this.gc = gc;
     }
 
     public void getInput(int i, ArrayList<String> input){
@@ -43,7 +49,7 @@ public class GameVue extends Group {
             joueurs[i].shoot();
             //if(!projectile.getMoving()) { projectile.setDirection(-joueurs[i].getAngle());}
             projectileController.startProjectile(projectile, projectile.getVue(), joueurs[i].getAngle());
-            
+
         }
         if (i==1 && input.contains("Q"))
         {
@@ -66,6 +72,17 @@ public class GameVue extends Group {
         }
 
         projectileController.throwProjectile(projectile, projectile.getVue());
+    }
+    //pour partie COLLISIONS : créer une méthode touched avec getboundingBox()
+    //cette méthode va dire au controller que le joueur/ennemi est touché
 
+    public boolean Touched(Projectile balle, Sprite p){
+        gc.setFill(Color.BLUE);
+        BoundingBox bb = balle.getBoundingBox();
+        System.out.println(bb);
+        gc.fillRect(bb.getMinX(), bb.getMinY(), bb.getWidth(), bb.getHeight());
+        Bounds pb = p.getBoundsInParent();
+        gc.fillRect(pb.getMinX(), pb.getMinY(), pb.getWidth(), pb.getHeight());
+        return balle.getBoundingBox().intersects(p.getBoundsInParent());
     }
 }

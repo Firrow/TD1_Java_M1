@@ -1,13 +1,14 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Vue;
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
+import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 
 
-public class ProjectileVue {
+public class ProjectileVue extends ImageView {
 	
   public Image projectileImg;
   public GraphicsContext gc;
@@ -15,6 +16,7 @@ public class ProjectileVue {
   public ProjectileVue(GraphicsContext gc){
       this.gc = gc;
       projectileImg = new Image("assets/ball.png");
+      super.setImage(projectileImg);
   }
   
   public void display(Projectile projectile) {

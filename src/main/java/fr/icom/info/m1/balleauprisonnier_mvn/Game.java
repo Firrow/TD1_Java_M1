@@ -43,18 +43,19 @@ public class Game {
         //super(w, h);
         width = w;
         height = h;
-        for(Human human : humans){
-            players.add(human);
-        }
-        for(IA ia : enemies){
-            players.add(ia);
-        }
 
         this.field=field;
         this.gc = field.getGraphicsContext2D();
         this.field = new Field(scene, (int)width, (int)height);
 
         startGame();
+
+        for(Human human : humans){
+            players.add(human);
+        }
+        for(IA ia : enemies){
+            players.add(ia);
+        }
     }
 
     void startGame(){

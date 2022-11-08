@@ -2,6 +2,7 @@ package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.ProjectileVue;
+import javafx.geometry.BoundingBox;
 
 public class Projectile {
 
@@ -55,5 +56,9 @@ public class Projectile {
 		 System.out.println(y+vitesse*Math.sin(direction));
 		this.x+=vitesse*Math.sin(Math.toRadians(direction));
 		this.y-=vitesse*Math.cos(Math.toRadians(direction));
+	}
+
+	public BoundingBox getBoundingBox(){
+		return new BoundingBox(getX(), getY(), projectileVue.getImage().getWidth(), projectileVue.getImage().getHeight());
 	}
 }

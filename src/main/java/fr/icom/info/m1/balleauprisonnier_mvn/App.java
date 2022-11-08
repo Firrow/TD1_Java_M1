@@ -36,12 +36,13 @@ public class App extends Application
 		//appeler
         Field gameField = new Field(scene, 600, 600 );
 		Game game = new Game(scene, 600, 600, gameField);
-		GameVue gv = new GameVue(game.getHuman());
+		GameVue gv = new GameVue(game.getHuman(), gameField.getGraphicsContext2D());
         root.getChildren().add( gameField );
 		root.getChildren().add(game.getHuman()[0].getSprite());
 		root.getChildren().add(game.getIA()[0].getSprite());
 		root.getChildren().add(game.getIA()[1].getSprite());
-		Evenements evenements = new Evenements(gameField, game.getHuman(), game.getProjectile(), gv);
+
+		Evenements evenements = new Evenements(gameField, game.getPlayers(), game.getProjectile(), gv);
 
         // On ajoute la scene a la fenetre et on affiche
         stage.setScene( scene );
