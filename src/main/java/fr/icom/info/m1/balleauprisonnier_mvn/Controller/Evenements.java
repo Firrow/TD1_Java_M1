@@ -76,7 +76,8 @@ public class Evenements extends Canvas {
 	        		joueurs[i].getPlayerVue().display(joueurs[i]);
 					//si joueur a projectile
 	    	    }
-	        	projectile.getVue().display(projectile);
+	        	if((projectile)!=null)
+	        			projectile.getVue().display(projectile);
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement
 	}

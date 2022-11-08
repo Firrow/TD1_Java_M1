@@ -13,12 +13,14 @@ public class GameVue extends Group {
     private Player[] joueurs;
     private Projectile projectile;
     private ProjectileController projectileController;
+    private Field field;
 
-    public GameVue(Player[] player)
+    public GameVue(Player[] player, Field field)
     {
         this.joueurs = player;
+        this.field=field;
         this.projectile = Projectile.getInstance();
-        this.projectileController = ProjectileController.getInstance();
+        this.projectileController = new ProjectileController();
     }
 
     public void getInput(int i, ArrayList<String> input){
@@ -42,7 +44,7 @@ public class GameVue extends Group {
         if (i==0 && input.contains("ENTER")){
             joueurs[i].shoot();
             //if(!projectile.getMoving()) { projectile.setDirection(-joueurs[i].getAngle());}
-            projectileController.startProjectile(projectile, projectile.getVue(), joueurs[i].getAngle());
+            projectileController.startProjectile(projectile, joueurs[i], joueurs[i].getAngle(), field.getGraphicsContext2D());
             
         }
         if (i==1 && input.contains("Q"))

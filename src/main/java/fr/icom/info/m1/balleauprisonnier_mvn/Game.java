@@ -86,13 +86,6 @@ public class Game {
         enemies[1] = new IA(gc, (int)width/2, 20, playerVueIA1);
         playerVueIA1.display(enemies[1]);
         
-        ProjectileVue projectileVue= new ProjectileVue(gc);
-        
-        //this.projectile = new Projectile(humans[0].getX(), humans[0].getY()-50, 2, projectileVue);
-        this.projectile = Projectile.getInstance();
-        projectile.setX(humans[0].getX());
-        projectile.setY(humans[0].getY()-50);
-        projectile.setVue(projectileVue);
-        projectileVue.display(projectile);
+
     }
 }
