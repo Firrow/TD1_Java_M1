@@ -48,6 +48,9 @@ public class Game {
         this.gc = field.getGraphicsContext2D();
         this.field = new Field(scene, (int)width, (int)height);
 
+        this.projectile = new Projectile();
+        this.projectile.setVue(new ProjectileVue(gc));
+
         startGame();
 
         for(Human human : humans){

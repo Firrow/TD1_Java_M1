@@ -37,7 +37,7 @@ public class Projectile {
 	}
 	*/
 
-	private Projectile() {
+	public Projectile() {
 		this.vitesse=2.5;
 		direction=0;
 		moving=false;

@@ -27,6 +27,7 @@ public class Evenements extends Canvas {
 		this.gv = gameVue;
 		this.joueurs = joueurs;
 
+
 	    /** 
 	     * Event Listener du clavier 
 	     * quand une touche est pressee on la rajoute a la liste d'input
@@ -87,7 +88,7 @@ public class Evenements extends Canvas {
 						playerToRemove.add(joueurs.get(i));
 					}
 	    	    }
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //				for(Player player : playerToRemove){
 //					joueurs.remove(player);
 //				}
@@ -95,10 +96,10 @@ public class Evenements extends Canvas {
 	        	projectile.getVue().display(projectile);
 
 				removeDeadPlayers();
-=======
-	        	if((projectile)!=null)
-	        			projectile.getVue().display(projectile);
->>>>>>> 215d877b36b41e06a39e4b7776a6520d2fe91537
+//=======
+	        	//if((projectile)!=null)
+	        			//projectile.getVue().display(projectile);
+//>>>>>>> 215d877b36b41e06a39e4b7776a6520d2fe91537
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement
 	}
