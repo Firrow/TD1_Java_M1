@@ -1,6 +1,4 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
-
-import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.ProjectileVue;
 import javafx.geometry.BoundingBox;
 
@@ -27,7 +25,7 @@ public class Projectile {
 
 
 	private Projectile() {
-		this.vitesse=2.5;
+		this.vitesse=1;
 		direction=0;
 		moving=false;
 		

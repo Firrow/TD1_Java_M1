@@ -82,12 +82,12 @@ public class Game {
         PlayerVue playerVueIA0 = new PlayerVue(spriteIA0, gc, "top",0, width/3, 20);
         PlayerVue playerVueIA1 = new PlayerVue(spriteIA1, gc, "top", 0, width/2, 20);
 
-        humans[0] = new Human(gc, (int)width/2, (int)height-50, playerVueHuman);
+        humans[0] = new Human(gc, (int)width/2, (int)height-50, playerVueHuman, true);
         playerVueHuman.display(humans[0]);
 
-        enemies[0] = new IA(gc, (int)width/3, 20, playerVueIA0);
+        enemies[0] = new IA(gc, (int)width/3, 20, playerVueIA0, false);
         playerVueIA0.display(enemies[0]);
-        enemies[1] = new IA(gc, (int)width/2, 20, playerVueIA1);
+        enemies[1] = new IA(gc, (int)width/2, 20, playerVueIA1, false);
         playerVueIA1.display(enemies[1]);
         
 

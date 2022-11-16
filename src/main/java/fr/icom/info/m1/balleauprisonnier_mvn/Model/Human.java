@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Human extends Player {
 
-    public Human(GraphicsContext gc, int xInit, int yInit, PlayerVue playerVue) {
-        super(gc, xInit, yInit, playerVue);
+    public Human(GraphicsContext gc, int xInit, int yInit, PlayerVue playerVue, boolean take_ball) {
+        super(gc, xInit, yInit, playerVue, take_ball);
     }
 }

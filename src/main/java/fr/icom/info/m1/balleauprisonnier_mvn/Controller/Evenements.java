@@ -86,13 +86,18 @@ public class Evenements extends Canvas {
 	        		joueurs.get(i).getPlayerVue().display(joueurs.get(i));
 
 					projectile=Projectile.getInstance();
-					//si joueur a projectile
-					//va appeler Touched qui va appeler al methode supprimer du model de Player
+					System.out.println("joueur " + i + " : " + joueurs.get(i).isTake_ball());
+					//System.out.println(projectile.getMoving());
+
 					if(projectile != null && projectile.getMoving()){
-						System.out.println("PROJECTILE !");
+						//System.out.println("PROJECTILE !");
 						if(gameVue.Touched(projectile, joueurs.get(i).getSprite())){
-							joueurs.get(i).killPlayer();
-							playerToRemove.add(joueurs.get(i));
+							joueurs.get(i).TakeBall(input);	//appelé joueurs.get(i).prendBalle
+							if(!joueurs.get(i).isTake_ball()){
+								//System.out.println(joueurs.get(i).isTake_ball());
+								joueurs.get(i).killPlayer();
+								playerToRemove.add(joueurs.get(i));
+							}
 						}
 					}
 

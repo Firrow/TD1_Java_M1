@@ -20,14 +20,15 @@ public class GameVue extends Group {
     private ProjectileController projectileController;
     private Field field;
 
-    public GameVue(Player[] player, Field field){
 
+    public GameVue(Player[] player, Field field)
+
+    {
         this.joueurs = player;
         this.field=field;
         this.projectile = Projectile.getInstance();
 
         this.gc = field.getGraphicsContext2D();
-
         this.projectileController = new ProjectileController();
     }
 
@@ -51,10 +52,10 @@ public class GameVue extends Group {
         }
         if (i==0 && input.contains("ENTER")){
             joueurs[i].shoot();
-            if(projectile.getMoving()) { //permet de ne pas recréer une balle quand une balle est en mouvement
+            joueurs[i].setTake_ball(false);
+            if(!projectile.getMoving()) {
                 projectileController.startProjectile(projectile, joueurs[i], joueurs[i].getAngle(), field.getGraphicsContext2D());
             }
-            //TODO if(projectile.getMoving() && SI UN DES JOUEURS A LA BALLE)
         }
         if (i==1 && input.contains("Q"))
         {
@@ -75,6 +76,7 @@ public class GameVue extends Group {
         if (i==1 && input.contains("SPACE")){
             joueurs[i].shoot();
         }
+
 
         projectileController.throwProjectile(projectile, projectile.getVue());
     }
