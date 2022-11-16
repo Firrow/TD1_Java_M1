@@ -98,9 +98,16 @@ public class Evenements extends Canvas {
 								joueurs.get(i).killPlayer();
 								playerToRemove.add(joueurs.get(i));
 							}
+							else{
+								//ATTENTION : LA BALLE EXISTE MAIS N'EST PAS AFFICHÉE
+								projectile.setMoving(false);
+								/*if(projectile != null)
+									System.out.println("EXISTE");
+								else
+									System.out.println("NOOOOOOON");*/
+							}
 						}
 					}
-
 	    	    }
 
 				removeDeadPlayers();
