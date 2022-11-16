@@ -20,21 +20,15 @@ public class GameVue extends Group {
     private ProjectileController projectileController;
     private Field field;
 
-//<<<<<<< HEAD
-    //public GameVue(Player[] player, GraphicsContext gc)
-//=======
-    public GameVue(Player[] player, Field field)
-//>>>>>>> 215d877b36b41e06a39e4b7776a6520d2fe91537
-    {
+    public GameVue(Player[] player, Field field){
+
         this.joueurs = player;
         this.field=field;
         this.projectile = Projectile.getInstance();
-//<<<<<<< HEAD
-        //this.projectileController = ProjectileController.getInstance();
+
         this.gc = field.getGraphicsContext2D();
-//=======
+
         this.projectileController = new ProjectileController();
-//>>>>>>> 215d877b36b41e06a39e4b7776a6520d2fe91537
     }
 
     public void getInput(int i, ArrayList<String> input){
@@ -57,9 +51,10 @@ public class GameVue extends Group {
         }
         if (i==0 && input.contains("ENTER")){
             joueurs[i].shoot();
-            //if(!projectile.getMoving()) { projectile.setDirection(-joueurs[i].getAngle());}
-
-            projectileController.startProjectile(projectile, joueurs[i], joueurs[i].getAngle(), field.getGraphicsContext2D());
+            if(projectile.getMoving()) { //permet de ne pas recréer une balle quand une balle est en mouvement
+                projectileController.startProjectile(projectile, joueurs[i], joueurs[i].getAngle(), field.getGraphicsContext2D());
+            }
+            //TODO if(projectile.getMoving() && SI UN DES JOUEURS A LA BALLE)
         }
         if (i==1 && input.contains("Q"))
         {
@@ -83,8 +78,6 @@ public class GameVue extends Group {
 
         projectileController.throwProjectile(projectile, projectile.getVue());
     }
-    //pour partie COLLISIONS : créer une méthode touched avec getboundingBox()
-    //cette méthode va dire au controller que le joueur/ennemi est touché
 
     public boolean Touched(Projectile balle, Sprite p){
         gc.setFill(Color.BLUE);

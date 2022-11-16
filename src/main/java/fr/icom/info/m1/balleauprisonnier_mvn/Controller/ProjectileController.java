@@ -17,10 +17,9 @@ public class ProjectileController {
 		/*if(!projectile.getMoving()) {
 			projectile.setDirection(angle);
 	        projectile.setMoving(true);
-			}*/  //A décommenter
+        } */
         projectileVue= new ProjectileVue(gc);
-        
-        //this.projectile = new Projectile(humans[0].getX(), humans[0].getY()-50, 2, projectileVue);
+
         projectile = Projectile.getInstance();
         projectile.setX(joueur.getX());
         projectile.setY(joueur.getY()-50);

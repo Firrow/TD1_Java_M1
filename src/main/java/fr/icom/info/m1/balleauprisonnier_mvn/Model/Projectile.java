@@ -24,20 +24,9 @@ public class Projectile {
 	public void setDirection(double direction) {this.direction = direction;}
 	public boolean getMoving() {return moving;}
 	public void setMoving(boolean moving) {this.moving=moving;}
-	
-	/*
-	public Projectile(double xInit, double yInit, int vitesse, ProjectileVue projectileVue) {
-		x=xInit;
-		y=yInit;
-		this.vitesse=vitesse;
-		direction=0;
-		this.projectileVue=projectileVue;
-		moving=false;
-		
-	}
-	*/
 
-	public Projectile() {
+
+	private Projectile() {
 		this.vitesse=2.5;
 		direction=0;
 		moving=false;

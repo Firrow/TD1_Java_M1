@@ -22,11 +22,12 @@ public class Evenements extends Canvas {
     ArrayList<String> input = new ArrayList<String>();
 	private GameVue gv;
 	private List<Player> joueurs;
+
+	private Projectile projectile;
     
-	public Evenements(Field field, List<Player> joueurs, Projectile projectile, GameVue gameVue) {
+	public Evenements(Field field, List<Player> joueurs, GameVue gameVue) {
 		this.gv = gameVue;
 		this.joueurs = joueurs;
-
 
 	    /** 
 	     * Event Listener du clavier 
@@ -77,29 +78,27 @@ public class Evenements extends Canvas {
 	        	field.display();
 				List<Player> playerToRemove = new ArrayList<>();
 	            // Deplacement et affichage des joueurs
+
+
 	        	for (int i = 0; i < joueurs.size(); i++)
 	    	    {
 					gameVue.getInput(i, input);
 	        		joueurs.get(i).getPlayerVue().display(joueurs.get(i));
+
+					projectile=Projectile.getInstance();
 					//si joueur a projectile
 					//va appeler Touched qui va appeler al methode supprimer du model de Player
-					if(gameVue.Touched(projectile, joueurs.get(i).getSprite())){
-						joueurs.get(i).killPlayer();
-						playerToRemove.add(joueurs.get(i));
+					if(projectile != null && projectile.getMoving()){
+						System.out.println("PROJECTILE !");
+						if(gameVue.Touched(projectile, joueurs.get(i).getSprite())){
+							joueurs.get(i).killPlayer();
+							playerToRemove.add(joueurs.get(i));
+						}
 					}
+
 	    	    }
-//<<<<<<< HEAD
-//				for(Player player : playerToRemove){
-//					joueurs.remove(player);
-//				}
-//				playerToRemove.clear();
-	        	projectile.getVue().display(projectile);
 
 				removeDeadPlayers();
-//=======
-	        	//if((projectile)!=null)
-	        			//projectile.getVue().display(projectile);
-//>>>>>>> 215d877b36b41e06a39e4b7776a6520d2fe91537
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement
 	}
