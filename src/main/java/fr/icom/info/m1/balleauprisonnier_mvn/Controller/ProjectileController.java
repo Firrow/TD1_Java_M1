@@ -31,10 +31,12 @@ public class ProjectileController {
 	}
 	
 	public void throwProjectile(Projectile projectile, ProjectileVue projectileVue) {
-        if (projectile.getMoving()) {
-        	projectile.moveProjectile();
-        	projectileVue.display(projectile);
-        }
+		if(projectileVue!=null) {
+	        if (projectile.getMoving()) {
+	        	projectile.moveProjectile();
+	        }
+        projectileVue.display(projectile);
+		}
 
 	}
 }

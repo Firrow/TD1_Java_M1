@@ -51,10 +51,11 @@ public class GameVue extends Group {
             joueurs[i].turnRight();
         }
         if (i==0 && input.contains("ENTER")){
-            joueurs[i].shoot();
-            joueurs[i].setTake_ball(false);
-            if(!projectile.getMoving()) {
+            
+            if(!projectile.getMoving() && joueurs[i].isTake_ball()) {
+            	joueurs[i].shoot();
                 projectileController.startProjectile(projectile, joueurs[i], joueurs[i].getAngle(), field.getGraphicsContext2D());
+                joueurs[i].setTake_ball(false);
             }
         }
         if (i==1 && input.contains("Q"))
@@ -76,7 +77,17 @@ public class GameVue extends Group {
         if (i==1 && input.contains("SPACE")){
             joueurs[i].shoot();
         }
-
+		if(projectile.getVue()!=null && projectile.getY()<=0) {
+			
+			projectile.setMoving(false);
+		}
+		if(projectile.getX()<=0) {
+			projectile.setDirection(projectile.getDirection()+90);
+		}
+		if(projectile.getVue()!=null && projectile.getX()+projectile.getVue().getBoundsInLocal().getWidth()>=field.width) {
+			projectile.setDirection(projectile.getDirection()-90);
+		}
+		//System.out.println(projectile.getDirection() + "," + joueurs[i].getAngle());
 
         projectileController.throwProjectile(projectile, projectile.getVue());
     }
