@@ -106,10 +106,14 @@ public class Evenements extends Canvas {
 					}
 
 					else if(projectile.getVue() != null && !projectile.getMoving()){
+						System.out.println("BALLE STOPPEEEEEEEEEEEEEEE");
 						if(gameVue.Touched(projectile, joueurs.get(i).getSprite()) && joueurs.get(i).isAlive() && !joueurs.get(i).isTake_ball()){
 							//projectile.setDirection(projectile.getDirection()+180);
 							joueurs.get(i).setTake_ball(true);
-							}
+							/*projectile.setX(joueurs.get(i).getX());
+							projectile.setY(joueurs.get(i).getY());*/// A GARDER QUAND JOUEUR APPUIE SUR P
+							System.out.println("JOUEUR A LA BALLE");
+						}
 							
 					}
 	    	    

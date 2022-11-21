@@ -53,6 +53,13 @@ public class GameVue extends Group {
         {
             joueurs[i].turnRight();
         }
+        if (i==0 && input.contains("P")){ //Vérification de la touche P + remise en place de la balle
+            //ennemi[i].TakeBall();
+            if(joueurs[i].isTake_ball()){
+                projectile.setX(joueurs[i].getX());
+                projectile.setY(joueurs[i].getY()-65);
+            }
+        }
         if (i==0 && input.contains("ENTER")){
             
             if(!projectile.getMoving() && joueurs[i].isTake_ball()) {
@@ -78,8 +85,15 @@ public class GameVue extends Group {
         {
             ennemi[i].turnRight();
         }
+        if (i==0 && input.contains("P")){ //Vérification de la touche P + remise en place de la balle
+            if(ennemi[i].isTake_ball()){
+                projectile.setX(ennemi[i].getX());
+                projectile.setY(ennemi[i].getY()+65);
+            }
+        }
         if (i==0 && input.contains("SPACE")){
             if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
+                System.out.println("SHOOOOOOOOOOOT");
                 ennemi[i].shoot();
                 //projectileController.startProjectile(projectile, ennemi[i], ennemi[i].getAngle(), field.getGraphicsContext2D());
                 projectileController.throwProjectile(projectile, ennemi[i].getAngle()+180);
@@ -104,6 +118,12 @@ public class GameVue extends Group {
         {
             ennemi[i].turnRight();
         }
+        if (i==1 && input.contains("P")){ //Vérification de la touche P + remise en place de la balle
+            if(ennemi[i].isTake_ball()){
+                projectile.setX(ennemi[i].getX());
+                projectile.setY(ennemi[i].getY()+65);
+            }
+        }
         if (i==1 && input.contains("SHIFT")){
             if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
                 ennemi[i].shoot();
@@ -114,8 +134,8 @@ public class GameVue extends Group {
             //ennemi[i].shoot();
         }
 
-		if(projectile.getVue()!=null && projectile.getY()<=ennemi[0].getY()) {
-			
+        //Arrête balle sur la ligne des ennemis
+		if(projectile.getVue()!=null && projectile.getY()<=ennemi[0].getY() || projectile.getY()>= joueurs[0].getY()) {
 			projectile.setMoving(false);
 		}
 		if(projectile.getX()<=0) {

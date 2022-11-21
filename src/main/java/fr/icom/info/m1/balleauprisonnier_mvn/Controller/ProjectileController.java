@@ -31,7 +31,7 @@ public class ProjectileController {
 	}
 
 	public void moveProjectile(Projectile projectile, ProjectileVue projectileVue) {
-		System.out.println("TIIIIRE");
+		//System.out.println("TIIIIRE");
 		if(projectileVue!=null) {
 			if (projectile.getMoving()) {
 				projectile.moveProjectile();
@@ -45,9 +45,10 @@ public class ProjectileController {
             projectile.setDirection(angle);
             projectile.setMoving(true);
         } */
-		projectile.setDirection(angle);
-		System.out.println(angle);
 		projectile.setMoving(true);
+		projectile.setDirection(angle);
+		//System.out.println(angle);
+
 	}
 	
 	/*public void throwProjectile(Projectile projectile, ProjectileVue projectileVue) {

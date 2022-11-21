@@ -119,7 +119,8 @@ public class Player
 	//Méthode qui permet au joueur de récupérer la balle
 	public void TakeBall(ArrayList<String> input) {
 		if(input.contains("P")){
-			take_ball = true;
+			//take_ball = true;
+			setTake_ball(true);
 		}
 	}
 }
