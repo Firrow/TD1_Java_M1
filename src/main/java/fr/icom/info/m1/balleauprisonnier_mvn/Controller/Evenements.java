@@ -99,16 +99,8 @@ public class Evenements extends Canvas {
 								playerToRemove.add(joueurs.get(i));
 							}
 							else{
-								//ATTENTION : LA BALLE EXISTE MAIS N'EST PAS AFFICHÉE
 								projectile.setMoving(false);
-								//TODO : FAIRE EN SORTE QUE LE JOUEUR NE DISPARAISSE PAS (ici)
-
 								//TODO : FAIRE EN SORTE QUE LA BALLE S'ARRETE SUR LA LIGNE DES JOUEURS
-								//TODO : GARDER LA BONDING BOX DES JOUEURS ET DE LA BALLE TOUT AU LONG DU JEU
-								/*if(projectile != null)
-									System.out.println("EXISTE");
-								else
-									System.out.println("NOOOOOOON");*/
 							}
 						}
 					}

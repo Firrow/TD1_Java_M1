@@ -1,4 +1,5 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Vue;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.IA;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Game;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
@@ -16,15 +17,17 @@ public class GameVue extends Group {
     //récupérer input d'Evenement
     //i en argument depuis Evenement
     private Player[] joueurs;
+    private IA[] ennemi;
     private Projectile projectile;
     private ProjectileController projectileController;
     private Field field;
 
 
-    public GameVue(Player[] player, Field field)
+    public GameVue(Player[] player, IA[] ia, Field field)
 
     {
         this.joueurs = player;
+        this.ennemi = ia;
         this.field=field;
         this.projectile = Projectile.getInstance();
 
@@ -60,22 +63,28 @@ public class GameVue extends Group {
         }
         if (i==1 && input.contains("Q"))
         {
-            joueurs[i].moveLeft();
+            ennemi[i].moveLeft();
         }
         if (i==1 && input.contains("D"))
         {
-            joueurs[i].moveRight();
+            ennemi[i].moveRight();
         }
         if (i==1 && input.contains("Z"))
         {
-            joueurs[i].turnLeft();
+            ennemi[i].turnLeft();
         }
         if (i==1 && input.contains("S"))
         {
-            joueurs[i].turnRight();
+            ennemi[i].turnRight();
         }
         if (i==1 && input.contains("SPACE")){
-            joueurs[i].shoot();
+            if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
+                ennemi[i].shoot();
+                //projectileController.startProjectile(projectile, ennemi[i], ennemi[i].getAngle(), field.getGraphicsContext2D());
+                projectileController.throwProjectile(projectile, ennemi[i].getAngle()+180);
+                ennemi[i].setTake_ball(false);
+            }
+            //ennemi[i].shoot();
         }
 		if(projectile.getVue()!=null && projectile.getY()<=0) {
 			
@@ -89,7 +98,7 @@ public class GameVue extends Group {
 		}
 		//System.out.println(projectile.getDirection() + "," + joueurs[i].getAngle());
 
-        projectileController.throwProjectile(projectile, projectile.getVue());
+        projectileController.moveProjectile(projectile, projectile.getVue());
     }
 
     public boolean Touched(Projectile balle, Sprite p){

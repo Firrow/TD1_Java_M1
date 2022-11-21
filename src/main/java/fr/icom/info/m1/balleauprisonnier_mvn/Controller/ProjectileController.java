@@ -29,14 +29,32 @@ public class ProjectileController {
         projectile.setDirection(angle);
         projectile.setMoving(true);
 	}
+
+	public void moveProjectile(Projectile projectile, ProjectileVue projectileVue) {
+		if(projectileVue!=null) {
+			if (projectile.getMoving()) {
+				projectile.moveProjectile();
+			}
+			projectileVue.display(projectile);
+		}
+	}
+
+	public void throwProjectile(Projectile projectile, double angle) {
+        /*if(!projectile.getMoving()) {
+            projectile.setDirection(angle);
+            projectile.setMoving(true);
+        } */
+		projectile.setDirection(angle);
+		System.out.println(angle);
+		projectile.setMoving(true);
+	}
 	
-	public void throwProjectile(Projectile projectile, ProjectileVue projectileVue) {
+	/*public void throwProjectile(Projectile projectile, ProjectileVue projectileVue) {
 		if(projectileVue!=null) {
 	        if (projectile.getMoving()) {
 	        	projectile.moveProjectile();
 	        }
         projectileVue.display(projectile);
 		}
-
-	}
+	}*/
 }

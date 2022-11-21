@@ -37,7 +37,7 @@ public class App extends Application
         Field gameField = new Field(scene, 600, 600 );
 		Game game = new Game(scene, 600, 600, gameField);
 
-		GameVue gv = new GameVue(game.getHuman(), gameField);
+		GameVue gv = new GameVue(game.getHuman(), game.getIA(), gameField);
 
         root.getChildren().add( gameField );
 		root.getChildren().add(game.getHuman()[0].getSprite());
