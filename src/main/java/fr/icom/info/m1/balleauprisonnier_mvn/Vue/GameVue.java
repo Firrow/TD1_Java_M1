@@ -114,7 +114,7 @@ public class GameVue extends Group {
             //ennemi[i].shoot();
         }
 
-		if(projectile.getVue()!=null && projectile.getY()<=0) {
+		if(projectile.getVue()!=null && projectile.getY()<=ennemi[0].getY()) {
 			
 			projectile.setMoving(false);
 		}
@@ -133,9 +133,9 @@ public class GameVue extends Group {
         //gc.setFill(Color.BLUE);
         BoundingBox bb = balle.getBoundingBox();
         //System.out.println(bb);
-        gc.fillRect(bb.getMinX(), bb.getMinY(), bb.getWidth(), bb.getHeight());
+        //gc.fillRect(bb.getMinX(), bb.getMinY(), bb.getWidth(), bb.getHeight());
         Bounds pb = p.getBoundsInParent();
-        gc.fillRect(pb.getMinX(), pb.getMinY(), pb.getWidth(), pb.getHeight());
+        //gc.fillRect(pb.getMinX(), pb.getMinY(), pb.getWidth(), pb.getHeight());
         return balle.getBoundingBox().intersects(p.getBoundsInParent());
     }
 }
