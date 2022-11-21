@@ -61,23 +61,24 @@ public class GameVue extends Group {
                 joueurs[i].setTake_ball(false);
             }
         }
-        if (i==1 && input.contains("Q"))
+
+        if (i==0 && input.contains("Q"))
         {
             ennemi[i].moveLeft();
         }
-        if (i==1 && input.contains("D"))
+        if (i==0 && input.contains("D"))
         {
             ennemi[i].moveRight();
         }
-        if (i==1 && input.contains("Z"))
+        if (i==0 && input.contains("Z"))
         {
             ennemi[i].turnLeft();
         }
-        if (i==1 && input.contains("S"))
+        if (i==0 && input.contains("S"))
         {
             ennemi[i].turnRight();
         }
-        if (i==1 && input.contains("SPACE")){
+        if (i==0 && input.contains("SPACE")){
             if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
                 ennemi[i].shoot();
                 //projectileController.startProjectile(projectile, ennemi[i], ennemi[i].getAngle(), field.getGraphicsContext2D());
@@ -86,6 +87,33 @@ public class GameVue extends Group {
             }
             //ennemi[i].shoot();
         }
+
+        if (i==1 && input.contains("K"))
+        {
+            ennemi[i].moveLeft();
+        }
+        if (i==1 && input.contains("M"))
+        {
+            ennemi[i].moveRight();
+        }
+        if (i==1 && input.contains("O"))
+        {
+            ennemi[i].turnLeft();
+        }
+        if (i==1 && input.contains("L"))
+        {
+            ennemi[i].turnRight();
+        }
+        if (i==1 && input.contains("SHIFT")){
+            if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
+                ennemi[i].shoot();
+                //projectileController.startProjectile(projectile, ennemi[i], ennemi[i].getAngle(), field.getGraphicsContext2D());
+                projectileController.throwProjectile(projectile, ennemi[i].getAngle()+180);
+                ennemi[i].setTake_ball(false);
+            }
+            //ennemi[i].shoot();
+        }
+
 		if(projectile.getVue()!=null && projectile.getY()<=0) {
 			
 			projectile.setMoving(false);
@@ -102,9 +130,9 @@ public class GameVue extends Group {
     }
 
     public boolean Touched(Projectile balle, Sprite p){
-        gc.setFill(Color.BLUE);
+        //gc.setFill(Color.BLUE);
         BoundingBox bb = balle.getBoundingBox();
-        System.out.println(bb);
+        //System.out.println(bb);
         gc.fillRect(bb.getMinX(), bb.getMinY(), bb.getWidth(), bb.getHeight());
         Bounds pb = p.getBoundsInParent();
         gc.fillRect(pb.getMinX(), pb.getMinY(), pb.getWidth(), pb.getHeight());

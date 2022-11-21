@@ -47,6 +47,7 @@ public class ProjectileController {
 		projectile.setDirection(angle);
 		System.out.println(angle);
 		projectile.setMoving(true);
+		//projectileVue.display(projectile); MARCHE PAS
 	}
 	
 	/*public void throwProjectile(Projectile projectile, ProjectileVue projectileVue) {
