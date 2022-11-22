@@ -40,10 +40,12 @@ public class GameVue extends Group {
         if (i==0 && input.contains("LEFT")) //GameVue (dans une fonction)
         {
             joueurs[i].moveLeft(); //est censé appeler controller qui va appeler model
+            projectile.withPlayerMove(joueurs[i], -50);
         }
         if (i==0 && input.contains("RIGHT"))
         {
             joueurs[i].moveRight();
+            projectile.withPlayerMove(joueurs[i], -50);
         }
         if (i==0 && input.contains("UP"))
         {
@@ -57,7 +59,7 @@ public class GameVue extends Group {
             //ennemi[i].TakeBall();
             if(joueurs[i].isTake_ball()){
                 projectile.setX(joueurs[i].getX());
-                projectile.setY(joueurs[i].getY()-65);
+                projectile.setY(joueurs[i].getY()-55);
             }
         }
         if (i==0 && input.contains("ENTER")){
@@ -72,10 +74,12 @@ public class GameVue extends Group {
         if (i==0 && input.contains("Q"))
         {
             ennemi[i].moveLeft();
+            projectile.withPlayerMove(ennemi[i], 65);
         }
         if (i==0 && input.contains("D"))
         {
             ennemi[i].moveRight();
+            projectile.withPlayerMove(ennemi[i], 65);
         }
         if (i==0 && input.contains("Z"))
         {
@@ -105,10 +109,12 @@ public class GameVue extends Group {
         if (i==1 && input.contains("K"))
         {
             ennemi[i].moveLeft();
+            projectile.withPlayerMove(ennemi[i], 65);
         }
         if (i==1 && input.contains("M"))
         {
             ennemi[i].moveRight();
+            projectile.withPlayerMove(ennemi[i], 65);
         }
         if (i==1 && input.contains("O"))
         {

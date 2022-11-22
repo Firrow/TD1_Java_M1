@@ -44,6 +44,13 @@ public class Projectile {
 		this.y-=vitesse*Math.cos(Math.toRadians(direction));
 	}
 
+	public void withPlayerMove(Player player, int miseANiveau){
+		if(player.isTake_ball()){
+			this.x = player.getX();
+			this.y = player.getY()+miseANiveau;
+		}
+	}
+
 	public BoundingBox getBoundingBox(){
 		return new BoundingBox(getX(), getY(), projectileVue.getImage().getWidth(), projectileVue.getImage().getHeight());
 	}
