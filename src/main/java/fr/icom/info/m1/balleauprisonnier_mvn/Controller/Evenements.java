@@ -1,6 +1,7 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Controller;
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Game;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.IA;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.GameVue;
@@ -91,16 +92,20 @@ public class Evenements extends Canvas {
 
 					if(projectile != null && projectile.getMoving()){
 						//System.out.println("PROJECTILE !");
-						if(gameVue.Touched(projectile, joueurs.get(i).getSprite())){
+						if(gameVue.Touched(projectile, joueurs.get(i).getSprite()) && joueurs.get(i).isAlive()){
 							joueurs.get(i).TakeBall(input);	//appelé joueurs.get(i).prendBalle
 							if(!joueurs.get(i).isTake_ball()){
 								//System.out.println(joueurs.get(i).isTake_ball());
+								
+								if(joueurs.get(i) instanceof IA) {
+									gameVue.scoreUp();
+								}
 								joueurs.get(i).killPlayer();
 								playerToRemove.add(joueurs.get(i));
+
 							}
 							else{
 								projectile.setMoving(false);
-								//TODO : FAIRE EN SORTE QUE LA BALLE S'ARRETE SUR LA LIGNE DES JOUEURS
 							}
 						}
 					}

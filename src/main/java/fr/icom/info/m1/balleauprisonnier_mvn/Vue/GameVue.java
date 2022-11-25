@@ -9,6 +9,10 @@ import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
@@ -21,18 +25,29 @@ public class GameVue extends Group {
     private Projectile projectile;
     private ProjectileController projectileController;
     private Field field;
-
-
-    public GameVue(Player[] player, IA[] ia, Field field)
+    private int score;
+    private Text text;
+    public int getScore() {
+    	return this.score;
+    }
+    public GameVue(Text text, Player[] player, IA[] ia, Field field)
 
     {
         this.joueurs = player;
         this.ennemi = ia;
         this.field=field;
         this.projectile = Projectile.getInstance();
-
+        this.score=0;
         this.gc = field.getGraphicsContext2D();
         this.projectileController = new ProjectileController();
+        Font f = Font.font("Abyssinica SIL",FontWeight.BOLD,FontPosture.REGULAR,20);
+        this.text=text;
+        
+        text.setLayoutY(30);
+        text.setLayoutX(10);
+        text.setFont(f);
+        text.setText("Score: " + this.score);
+
     }
 
     public void getInput(int i, ArrayList<String> input){
@@ -153,8 +168,31 @@ public class GameVue extends Group {
 		//System.out.println(projectile.getDirection() + "," + joueurs[i].getAngle());
 
         projectileController.moveProjectile(projectile, projectile.getVue());
+        text.setText("Score: " + this.score);
+        getFinJeu();
+        //if(ennemi)
+    }
+    
+    public int getFinJeu() {
+    	if(!joueurs[0].isAlive()) {
+    		text.setX(field.width/2-60);
+    		text.setY(field.height/2);
+    		text.setText("Game over");
+    		return 1;
+    	}
+    	else if(!ennemi[0].isAlive() && !ennemi[1].isAlive()) {
+    		text.setX(field.width/2-50);
+    		text.setY(field.height/2);    		
+    		text.setText("You win !");
+    		return 2;
+    	}
+    	return 0;
     }
 
+	public void scoreUp() {
+		this.score+=1;
+	}
+	
     public boolean Touched(Projectile balle, Sprite p){
         //gc.setFill(Color.BLUE);
         BoundingBox bb = balle.getBoundingBox();

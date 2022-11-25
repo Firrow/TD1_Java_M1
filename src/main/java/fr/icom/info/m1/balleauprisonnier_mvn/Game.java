@@ -92,4 +92,8 @@ public class Game {
         
 
     }
+    /*
+    public void newGame() {
+    	this = new Game(scene, w, h, field);
+    }*/
 }
