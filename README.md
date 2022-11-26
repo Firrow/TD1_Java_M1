@@ -3,6 +3,7 @@ Auteurs : Lina Belhadj - Manon Bonnot
 
 Comment lancer notre jeu :
 1) Téléchargez le dossier du jeu
-2) Ouvrez le code à l'aide d'un IDE (Eclipse, IntelliJ, etc.)
-3) Dans le terminal de votre IDE, tapez : mvn javafx:run
-4) Amusez-vous bien !
+2) Ouvrez votre terminal
+3) Rendez-vous à la racine du projet 
+4) Tapez : mvn javafx:run
+5) Amusez-vous bien !
