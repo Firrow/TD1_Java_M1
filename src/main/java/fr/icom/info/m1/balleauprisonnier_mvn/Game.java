@@ -6,7 +6,6 @@ import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Field;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Sprite;
-import fr.icom.info.m1.balleauprisonnier_mvn.Vue.ProjectileVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 
 
@@ -25,31 +24,29 @@ public class Game {
     IA[] enemies = new IA[2];
 
     List<Player> players = new ArrayList<>();
-    public List<Player> getPlayers() {
-        return players;
-    }
-    public IA[] getIA() {return enemies;}
-    public Human[] getHuman() {return humans;}
-    public Projectile getProjectile() {return projectile;}
 
     Field field;
     Projectile projectile;
     private double width;
     private double height;
     private GraphicsContext gc;
+    
+    /*Accesseurs*/
+    public List<Player> getPlayers() {return players;}
+    public IA[] getIA() {return enemies;}
+    public Human[] getHuman() {return humans;}
+    public Projectile getProjectile() {return projectile;}
+
 
     public Game(Scene scene, double w, double h, Field field)
     {
-        //super(w, h);
+        /*Creation des elements du terrain et du jeu*/
         width = w;
         height = h;
 
         this.field=field;
         this.gc = field.getGraphicsContext2D();
         this.field = new Field(scene, (int)width, (int)height);
-
-        /*this.projectile = new Projectile();
-        this.projectile.setVue(new ProjectileVue(gc));*/
 
         startGame();
 
@@ -62,6 +59,8 @@ public class Game {
     }
 
     void startGame(){
+    	
+    	/*On initialise les sprites*/
         Image commonImage = new Image("assets/orc.png");
 
         Sprite spriteHuman = new Sprite(commonImage, 0,0, Duration.seconds(.2), "bottom");
@@ -82,18 +81,15 @@ public class Game {
         PlayerVue playerVueIA0 = new PlayerVue(spriteIA0, gc, "top",0, width/3, 20);
         PlayerVue playerVueIA1 = new PlayerVue(spriteIA1, gc, "top", 0, width/2, 20);
 
-        humans[0] = new Human(gc, (int)width/2, (int)height-50, playerVueHuman, true);
+        
+        //Le joueur humain commence avec le projectile
+        humans[0] = new Human((int)width/2, (int)height-50, playerVueHuman, true);
         playerVueHuman.display(humans[0]);
 
-        enemies[0] = new IA(gc, (int)width/3, 20, playerVueIA0, false);
+        enemies[0] = new IA((int)width/3, 20, playerVueIA0, false);
         playerVueIA0.display(enemies[0]);
-        enemies[1] = new IA(gc, (int)width/2, 20, playerVueIA1, false);
+        enemies[1] = new IA((int)width/2, 20, playerVueIA1, false);
         playerVueIA1.display(enemies[1]);
-        
 
     }
-    /*
-    public void newGame() {
-    	this = new Game(scene, w, h, field);
-    }*/
 }

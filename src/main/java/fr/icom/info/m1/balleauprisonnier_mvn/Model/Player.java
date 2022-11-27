@@ -2,7 +2,6 @@ package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Sprite;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
-import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,6 @@ public class Player
 	private PlayerVue playerVue;
 
 
-	private GraphicsContext gc;
 	private double angle;
 	private boolean alive;
 	private boolean take_ball;
@@ -50,16 +48,16 @@ public class Player
 	}
 
 
-	public Player(GraphicsContext gc, int xInit, int yInit, PlayerVue playerVue, boolean take_ball)
+	public Player(int xInit, int yInit, PlayerVue playerVue, boolean take_ball)
 	{
 	// Tous les joueurs commencent au centre du canvas,
 	x = xInit;
 	y = yInit;
-	gc = gc;
+
 	alive = true;
 	this.take_ball = take_ball;
 
-	this.playerVue = playerVue; //acc√©der au PlayerVue
+	this.playerVue = playerVue; //acceder au PlayerVue
 
 	angle = 0;
 	step = 1;
@@ -98,7 +96,6 @@ public class Player
 
 	public void shoot(){
 		playerVue.getSprite().playShoot();
-		//cr√©ation
 	}
 
 	public void boost()
@@ -107,15 +104,14 @@ public class Player
 		playerVue.spriteAnimate(this);
 	}
 
-	//M√©thode qui supprime le joueur touch√© de la liste de joueur
+	//MÈthode qui supprime le joueur touchÈ de la liste de joueur
 	public void killPlayer() {
 		alive = false;
 	}
 
-	//M√©thode qui permet au joueur de r√©cup√©rer la balle
+	//MÈthode qui permet au joueur de rÈcuperer la balle
 	public void TakeBall(ArrayList<String> input) {
 		if(input.contains("P")){
-			//take_ball = true;
 			setTake_ball(true);
 		}
 	}

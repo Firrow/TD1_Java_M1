@@ -1,11 +1,9 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Vue;
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
-import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.transform.Rotate;
 
 
 public class ProjectileVue extends ImageView {
@@ -21,10 +19,9 @@ public class ProjectileVue extends ImageView {
   
   public void display(Projectile projectile) {
 
-      gc.save(); // saves the current state on stack, including the current transform
-      //rotate(gc, projectile.getDirection(), projectile.getX(), projectile.getY());
+      gc.save(); // sauvegarde l'etat courant dans la pile
       gc.drawImage(projectileImg, projectile.getX(), projectile.getY());
-      gc.restore(); // back to original state (before rotation)
+      gc.restore(); // revient a l'etat d'origine (avant la rotation)
   }
   
 }

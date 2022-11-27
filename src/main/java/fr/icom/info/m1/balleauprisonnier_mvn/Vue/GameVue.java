@@ -1,25 +1,15 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Vue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.IA;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
-import fr.icom.info.m1.balleauprisonnier_mvn.Game;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import fr.icom.info.m1.balleauprisonnier_mvn.Controller.ProjectileController;
-import javafx.geometry.BoundingBox;
-import javafx.geometry.Bounds;
 import javafx.scene.Group;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
 public class GameVue extends Group {
-    private GraphicsContext gc;
-    //récupérer input d'Evenement
-    //i en argument depuis Evenement
+	
     private Player[] joueurs;
     private IA[] ennemi;
     private Projectile projectile;
@@ -38,23 +28,18 @@ public class GameVue extends Group {
         this.field=field;
         this.projectile = Projectile.getInstance();
         this.score=0;
-        this.gc = field.getGraphicsContext2D();
         this.projectileController = new ProjectileController();
-        Font f = Font.font("Abyssinica�SIL",FontWeight.BOLD,FontPosture.REGULAR,20);
         this.text=text;
         
-        text.setLayoutY(30);
-        text.setLayoutX(10);
-        text.setFont(f);
         text.setText("Score: " + this.score);
 
     }
 
+    //Gestion des inputs clavier
     public void getInput(int i, ArrayList<String> input){
-//        System.out.println(input);
-        if (i==0 && input.contains("LEFT")) //GameVue (dans une fonction)
+        if (i==0 && input.contains("LEFT"))
         {
-            joueurs[i].moveLeft(); //est censé appeler controller qui va appeler model
+            joueurs[i].moveLeft();
             projectile.withPlayerMove(joueurs[i], -50);
         }
         if (i==0 && input.contains("RIGHT"))
@@ -70,14 +55,13 @@ public class GameVue extends Group {
         {
             joueurs[i].turnRight();
         }
-        if (i==0 && input.contains("P")){ //Vérification de la touche P + remise en place de la balle
-            //ennemi[i].TakeBall();
+        if (i==0 && input.contains("P")){ //Verification de la touche P + remise en place de la balle
             if(joueurs[i].isTake_ball()){
                 projectile.setX(joueurs[i].getX());
                 projectile.setY(joueurs[i].getY()-55);
             }
         }
-        if (i==0 && input.contains("ENTER")){
+        if (i==0 && input.contains("ENTER")){ //Tir du joueur humain
             
             if(!projectile.getMoving() && joueurs[i].isTake_ball()) {
             	joueurs[i].shoot();
@@ -104,7 +88,7 @@ public class GameVue extends Group {
         {
             ennemi[i].turnRight();
         }
-        if (i==0 && input.contains("P")){ //Vérification de la touche P + remise en place de la balle
+        if (i==0 && input.contains("P")){ //Verification de la touche P + remise en place de la balle
             if(ennemi[i].isTake_ball()){
                 projectile.setX(ennemi[i].getX());
                 projectile.setY(ennemi[i].getY()+65);
@@ -112,13 +96,10 @@ public class GameVue extends Group {
         }
         if (i==0 && input.contains("SPACE")){
             if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
-                System.out.println("SHOOOOOOOOOOOT");
                 ennemi[i].shoot();
-                //projectileController.startProjectile(projectile, ennemi[i], ennemi[i].getAngle(), field.getGraphicsContext2D());
                 projectileController.throwProjectile(projectile, ennemi[i].getAngle()+180);
                 ennemi[i].setTake_ball(false);
             }
-            //ennemi[i].shoot();
         }
 
         if (i==1 && input.contains("K"))
@@ -139,7 +120,7 @@ public class GameVue extends Group {
         {
             ennemi[i].turnRight();
         }
-        if (i==1 && input.contains("P")){ //Vérification de la touche P + remise en place de la balle
+        if (i==1 && input.contains("P")){ //Verification de la touche P + remise en place de la balle
             if(ennemi[i].isTake_ball()){
                 projectile.setX(ennemi[i].getX());
                 projectile.setY(ennemi[i].getY()+65);
@@ -148,14 +129,12 @@ public class GameVue extends Group {
         if (i==1 && input.contains("SHIFT")){
             if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
                 ennemi[i].shoot();
-                //projectileController.startProjectile(projectile, ennemi[i], ennemi[i].getAngle(), field.getGraphicsContext2D());
                 projectileController.throwProjectile(projectile, ennemi[i].getAngle()+180);
                 ennemi[i].setTake_ball(false);
             }
-            //ennemi[i].shoot();
         }
 
-        //Arrête balle sur la ligne des ennemis
+        //Gestion des collisions entre projectile et bord du terrain
 		if(projectile.getVue()!=null && projectile.getY()<=ennemi[0].getY() || projectile.getY()>= joueurs[0].getY()) {
 			projectile.setMoving(false);
 		}
@@ -165,14 +144,18 @@ public class GameVue extends Group {
 		if(projectile.getVue()!=null && projectile.getX()+projectile.getVue().getBoundsInLocal().getWidth()>=field.width) {
 			projectile.setDirection(projectile.getDirection()-90);
 		}
-		//System.out.println(projectile.getDirection() + "," + joueurs[i].getAngle());
 
+		//Deplacement du projectile
         projectileController.moveProjectile(projectile, projectile.getVue());
+        //Mise a jour du score
         text.setText("Score: " + this.score);
+        //Verification de fin de jeu
         getFinJeu();
-        //if(ennemi)
     }
     
+    /*
+     * Affiche un message de fin de partie
+     */
     public int getFinJeu() {
     	if(!joueurs[0].isAlive()) {
     		text.setX(field.width/2-60);
@@ -193,13 +176,10 @@ public class GameVue extends Group {
 		this.score+=1;
 	}
 	
+	/*
+	 * Verifie l'interscetion d'un joueur avec le projectile
+	 */
     public boolean Touched(Projectile balle, Sprite p){
-        //gc.setFill(Color.BLUE);
-        BoundingBox bb = balle.getBoundingBox();
-        //System.out.println(bb);
-        //gc.fillRect(bb.getMinX(), bb.getMinY(), bb.getWidth(), bb.getHeight());
-        Bounds pb = p.getBoundsInParent();
-        //gc.fillRect(pb.getMinX(), pb.getMinY(), pb.getWidth(), pb.getHeight());
         return balle.getBoundingBox().intersects(p.getBoundsInParent());
     }
 }
