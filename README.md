@@ -10,7 +10,7 @@ Comment lancer notre jeu :
   5) Amusez-vous bien !
 
 
-                      COMMANDES :
+COMMANDES :
 - Joueur 1 (en bas) : 
     - Se déplacer : flèches gauche - droite - haut - bas 
     - Lancer la balle : Entrée
