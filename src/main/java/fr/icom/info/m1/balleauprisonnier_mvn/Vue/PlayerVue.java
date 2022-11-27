@@ -14,7 +14,10 @@ public class PlayerVue {
     public double x;
     public double y;
 
-
+    public Image getdirArrowPlayer() {
+        return this.dirArrowPlayer;
+    }
+    
     public double getX() {
         return this.x;
     }

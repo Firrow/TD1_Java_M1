@@ -73,7 +73,6 @@ public class Player
 		{
 			x -= step;
 			playerVue.spriteAnimate(this);
-			playerVue.display(this);
 		}
 	}
 
@@ -83,20 +82,17 @@ public class Player
 		{
 			x += step;
 			playerVue.spriteAnimate(this);
-			playerVue.display(this);
 		}
 	}
 
 	public void turnLeft()
 	{
 	  angle += 1;
-	  playerVue.display(this);
 	}
 
 	public void turnRight()
 	{
 	  angle -= 1;
-	  playerVue.display(this);
 	}
 
 

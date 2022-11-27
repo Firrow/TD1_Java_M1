@@ -84,7 +84,7 @@ public class Evenements extends Canvas {
 	        	for (int i = 0; i < joueurs.size(); i++)
 	    	    {
 					gameVue.getInput(i, input);
-	        		joueurs.get(i).getPlayerVue().display(joueurs.get(i));
+	        		if(joueurs.get(i).isAlive()) joueurs.get(i).getPlayerVue().display(joueurs.get(i));
 
 					projectile=Projectile.getInstance();
 					System.out.println("joueur " + i + " : " + joueurs.get(i).isTake_ball());
