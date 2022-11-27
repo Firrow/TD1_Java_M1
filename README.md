@@ -8,3 +8,22 @@ Comment lancer notre jeu :
   3) Rendez-vous à la racine du projet 
   4) Utilisez la commande : mvn javafx:run
   5) Amusez-vous bien !
+
+
+                      COMMANDES :
+- Joueur 1 (en bas) : 
+    - Se déplacer : flèches gauche - droite - haut - bas 
+    - Lancer la balle : Entrée
+    - Prendre la balle : P
+
+- IA 1 (en haut à gauche) :
+    - Se déplacer : Z - Q - S - D
+    - Lancer la balle : Espace
+    - Prendre la balle : P
+    
+- IA 2 (en haut à droite) :
+    - Se déplacer : O - K - L - M
+    - Lancer la balle : Shift
+    - Prendre la balle : P
+
+  
