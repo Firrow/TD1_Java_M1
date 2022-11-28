@@ -40,7 +40,7 @@ public class GameVue extends Group {
         this.score=0;
         this.gc = field.getGraphicsContext2D();
         this.projectileController = new ProjectileController();
-        Font f = Font.font("Abyssinica SIL",FontWeight.BOLD,FontPosture.REGULAR,20);
+        Font f = Font.font("Abyssinicaï¿½SIL",FontWeight.BOLD,FontPosture.REGULAR,20);
         this.text=text;
         
         text.setLayoutY(30);
