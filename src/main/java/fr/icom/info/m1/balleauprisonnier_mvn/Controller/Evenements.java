@@ -88,8 +88,8 @@ public class Evenements extends Canvas {
 					//Gestion des collisions joueurs et du score
 					if(projectile != null && projectile.getMoving()){
 						//Le joueur en vie est touche
-						if(gameVue.Touched(projectile, players.get(i).getSprite()) && players.get(i).isAlive()){
-							players.get(i).TakeBall(input);
+						if(gameVue.touched(projectile, players.get(i).getSprite()) && players.get(i).isAlive()){
+							players.get(i).takeBall(input);
 							if(!players.get(i).isTakeBall()){
 								if(players.get(i) instanceof IA) {
 									gameVue.scoreUp();
@@ -106,7 +106,7 @@ public class Evenements extends Canvas {
 					}
 					//Le joueur reprend la balle
 					else if(projectile.getVue() != null && !projectile.getMoving()){
-						if(gameVue.Touched(projectile, players.get(i).getSprite()) && players.get(i).isAlive() && !players.get(i).isTakeBall()){
+						if(gameVue.touched(projectile, players.get(i).getSprite()) && players.get(i).isAlive() && !players.get(i).isTakeBall()){
 
 							players.get(i).setTakeBall(true);
 						}		

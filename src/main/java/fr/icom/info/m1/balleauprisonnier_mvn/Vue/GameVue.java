@@ -176,7 +176,7 @@ public class GameVue extends Group {
 	/*
 	 * Verifie l'intersection d'un joueur avec le projectile
 	 */
-    public boolean Touched(Projectile balle, Sprite p){
+    public boolean touched(Projectile balle, Sprite p){
         return balle.getBoundingBox().intersects(p.getBoundsInParent());
     }
 }
