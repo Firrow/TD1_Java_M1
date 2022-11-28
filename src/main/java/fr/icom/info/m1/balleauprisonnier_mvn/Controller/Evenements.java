@@ -19,12 +19,11 @@ public class Evenements extends Canvas {
 	
 	/** Tableau tracant les evenements */
     ArrayList<String> input = new ArrayList<String>();
-	private List<Player> joueurs;
-
+	private List<Player> players;
 	private Projectile projectile;
     
-	public Evenements(Field field, List<Player> joueurs, GameVue gameVue) {
-		this.joueurs = joueurs;
+	public Evenements(Field field, List<Player> players, GameVue gameVue) {
+		this.players = players;
 
 	    /** 
 	     * Event Listener du clavier 
@@ -67,7 +66,7 @@ public class Evenements extends Canvas {
 	     * soit environ 60 fois par seconde.
 	     *
 	     */
-		//A DÉPLACER DANS GAME !
+		//A DEPLACER DANS GAME !
 	    new AnimationTimer()
 	    {
 	        public void handle(long currentNanoTime)
@@ -76,28 +75,28 @@ public class Evenements extends Canvas {
 				List<Player> playerToRemove = new ArrayList<>();
 				
 	            // Deplacement et affichage des joueurs
-	        	for (int i = 0; i < joueurs.size(); i++)
+	        	for (int i = 0; i < players.size(); i++)
 	    	    {
 	        		//On recupere l'input
 					gameVue.getInput(i, input);
 					
 					//Affichage des fleches de direction si le joueur est en vie
-	        		if(joueurs.get(i).isAlive()) joueurs.get(i).getPlayerVue().display(joueurs.get(i));
+	        		if(players.get(i).isAlive()) players.get(i).getPlayerVue().display(players.get(i));
 
 					projectile=Projectile.getInstance();
 
 					//Gestion des collisions joueurs et du score
 					if(projectile != null && projectile.getMoving()){
 						//Le joueur en vie est touche
-						if(gameVue.Touched(projectile, joueurs.get(i).getSprite()) && joueurs.get(i).isAlive()){
-							joueurs.get(i).TakeBall(input);
-							if(!joueurs.get(i).isTake_ball()){
-								if(joueurs.get(i) instanceof IA) {
+						if(gameVue.Touched(projectile, players.get(i).getSprite()) && players.get(i).isAlive()){
+							players.get(i).TakeBall(input);
+							if(!players.get(i).isTakeBall()){
+								if(players.get(i) instanceof IA) {
 									gameVue.scoreUp();
 								}
 								
-								joueurs.get(i).killPlayer();
-								playerToRemove.add(joueurs.get(i));
+								players.get(i).killPlayer();
+								playerToRemove.add(players.get(i));
 							}
 							
 							else{
@@ -107,9 +106,9 @@ public class Evenements extends Canvas {
 					}
 					//Le joueur reprend la balle
 					else if(projectile.getVue() != null && !projectile.getMoving()){
-						if(gameVue.Touched(projectile, joueurs.get(i).getSprite()) && joueurs.get(i).isAlive() && !joueurs.get(i).isTake_ball()){
+						if(gameVue.Touched(projectile, players.get(i).getSprite()) && players.get(i).isAlive() && !players.get(i).isTakeBall()){
 
-							joueurs.get(i).setTake_ball(true);
+							players.get(i).setTakeBall(true);
 						}		
 					}
 	    	    }
@@ -119,7 +118,7 @@ public class Evenements extends Canvas {
 	}
 	
 	public void removeDeadPlayers(){
-		for (Player player : joueurs) {
+		for (Player player : players) {
 			if(!player.isAlive()){
 				player.getSprite().setVisible(false);
 			}

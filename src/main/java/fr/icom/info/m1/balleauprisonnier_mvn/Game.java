@@ -31,7 +31,10 @@ public class Game {
     private double height;
     private GraphicsContext gc;
     
-    /*Accesseurs*/
+
+/*
+ * Accesseurs et mutateurs
+ */
     public List<Player> getPlayers() {return players;}
     public IA[] getIA() {return enemies;}
     public Human[] getHuman() {return humans;}
@@ -60,7 +63,7 @@ public class Game {
 
     void startGame(){
     	
-    	/*On initialise les sprites*/
+    	//On initialise les sprites
         Image commonImage = new Image("assets/orc.png");
 
         Sprite spriteHuman = new Sprite(commonImage, 0,0, Duration.seconds(.2), "bottom");
@@ -76,7 +79,7 @@ public class Game {
         spriteIA1.setY(20);
 
 
-        /** On initialise le terrain de jeu */
+        // On initialise le terrain de jeu
         PlayerVue playerVueHuman = new PlayerVue(spriteHuman, gc, "bottom", 0, width/2, height-50);
         PlayerVue playerVueIA0 = new PlayerVue(spriteIA0, gc, "top",0, width/3, 20);
         PlayerVue playerVueIA1 = new PlayerVue(spriteIA1, gc, "top", 0, width/2, 20);

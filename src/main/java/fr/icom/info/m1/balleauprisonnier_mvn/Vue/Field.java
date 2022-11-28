@@ -30,7 +30,7 @@ public class Field extends Canvas {
 		width = w;
 		height = h;
 		
-		/** permet de capturer le focus et donc les evenements clavier et souris */
+		// permet de capturer le focus et donc les evenements clavier et souris 
 		this.setFocusTraversable(true);
 	}
 	

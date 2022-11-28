@@ -59,10 +59,10 @@ public class Projectile {
 	/*
 	 * Le projectile est positionne relativement au joueur
 	 */
-	public void withPlayerMove(Player player, int miseANiveau){
-		if(player.isTake_ball()){
+	public void withPlayerMove(Player player, int y){
+		if(player.isTakeBall()){
 			this.x = player.getX();
-			this.y = player.getY()+miseANiveau;
+			this.y = player.getY()+y;
 		}
 	}
 

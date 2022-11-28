@@ -19,51 +19,21 @@ public class Sprite extends ImageView {
     public boolean isRunning;
 
 
-
-
-
-    public Rectangle2D[] getWalkClips() {
-        return walkClips;
-    }
-    public Rectangle2D[] getShootClips() {
-        return shootClips;
-    }
-    public int getNumCells() {
-        return numCells;
-    }
-    public int getNumCellsWalk() {
-        return numCellsWalk;
-    }
-    public int getNumCellsShoot() {
-        return numCellsShoot;
-    }
-    public Timeline getWalkTimeline() {
-        return walkTimeline;
-    }
-
-
-
-
-    public int getFrameCounter() {
-        return frameCounter.get();
-    }
-    public void setFrameCounter(int frameCounter) {
-        this.frameCounter.set(frameCounter);
-    }
-    public IntegerProperty frameCounterProperty() {
-        return frameCounter;
-    }
-    public Timeline getShootTimeline() {
-        return shootTimeline;
-    }
-    public Timeline getTimeline() {
-        return timeline;
-    }
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
-    }
-
-
+/*
+ * Accesseurs et mutateurs
+ */
+    public Rectangle2D[] getWalkClips() {return walkClips;}
+    public Rectangle2D[] getShootClips() {return shootClips;}
+    public int getNumCells() {return numCells;}
+    public int getNumCellsWalk() {return numCellsWalk;}
+    public int getNumCellsShoot() {return numCellsShoot;}
+    public Timeline getWalkTimeline() {return walkTimeline;}
+    public int getFrameCounter() {return frameCounter.get();}
+    public void setFrameCounter(int frameCounter) {this.frameCounter.set(frameCounter);}
+    public IntegerProperty frameCounterProperty() {return frameCounter;}
+    public Timeline getShootTimeline() {return shootTimeline;}
+    public Timeline getTimeline() {return timeline;}
+    public void setTimeline(Timeline timeline) {this.timeline = timeline;}
 
 
     public Sprite(Image animationImage, int numCells, int numRows, Duration frameTime, String side) {

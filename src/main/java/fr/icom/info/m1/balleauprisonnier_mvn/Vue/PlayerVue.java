@@ -28,7 +28,6 @@ public class PlayerVue {
 
 
 
-    //Partie gestion sprite
     public PlayerVue(Sprite sprite, GraphicsContext gc, String side, double anglePlayer, double xPlayer, double yPlayer){
         this.sprite = sprite;
         this.gc = gc;

@@ -21,41 +21,29 @@ public class Player
 
 	private double angle;
 	private boolean alive;
-	private boolean take_ball;
+	private boolean takeBall;
+
+/*
+ * Accesseurs et mutateurs
+ */
+	public boolean isTakeBall() {return takeBall;}
+	public void setTakeBall(boolean takeBall) {this.takeBall = takeBall;}
+	public double getX() {return this.x;}
+	public double getY() {return this.y;}
+	public Sprite getSprite() {return this.playerVue.getSprite();}
+	public double getAngle() { return angle;}
+	public PlayerVue getPlayerVue() {return playerVue;}
+	public boolean isAlive() {return alive;}
 
 
-	public boolean isTake_ball() {
-		return take_ball;
-	}
-	public void setTake_ball(boolean take_ball) {
-		this.take_ball = take_ball;
-	}
-	public double getX() {
-		return this.x;
-	}
-	public double getY() {
-		return this.y;
-	}
-	public Sprite getSprite() {
-		return this.playerVue.getSprite();
-	}
-	public double getAngle() { return angle; }
-	public PlayerVue getPlayerVue() {
-		return playerVue;
-	}
-	public boolean isAlive() {
-		return alive;
-	}
-
-
-	public Player(int xInit, int yInit, PlayerVue playerVue, boolean take_ball)
+	public Player(int xInit, int yInit, PlayerVue playerVue, boolean takeBall)
 	{
 	// Tous les joueurs commencent au centre du canvas,
 	x = xInit;
 	y = yInit;
 
 	alive = true;
-	this.take_ball = take_ball;
+	this.takeBall = takeBall;
 
 	this.playerVue = playerVue; //acceder au PlayerVue
 
@@ -104,15 +92,19 @@ public class Player
 		playerVue.spriteAnimate(this);
 	}
 
-	//Méthode qui supprime le joueur touché de la liste de joueur
+	/*
+	 * Méthode qui supprime le joueur touché de la liste de joueur
+	 */
 	public void killPlayer() {
 		alive = false;
 	}
 
-	//Méthode qui permet au joueur de récuperer la balle
+	/*
+	 * Méthode qui permet au joueur de récuperer la balle
+	 */
 	public void TakeBall(ArrayList<String> input) {
 		if(input.contains("P")){
-			setTake_ball(true);
+			setTakeBall(true);
 		}
 	}
 }

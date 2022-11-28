@@ -16,12 +16,12 @@ public class ProjectileController {
 	/*
 	 * Creation du projectile
 	 */
-	public void startProjectile(Projectile projectile, Player joueur, double angle, GraphicsContext gc) {
+	public void startProjectile(Projectile projectile, Player player, double angle, GraphicsContext gc) {
         projectileVue= new ProjectileVue(gc);
 
         projectile = Projectile.getInstance();
-        projectile.setX(joueur.getX());
-        projectile.setY(joueur.getY()-50);
+        projectile.setX(player.getX());
+        projectile.setY(player.getY()-50);
         projectile.setVue(projectileVue);
         projectileVue.display(projectile);
         

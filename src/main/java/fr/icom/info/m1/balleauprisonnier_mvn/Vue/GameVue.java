@@ -10,21 +10,18 @@ import java.util.ArrayList;
 
 public class GameVue extends Group {
 	
-    private Player[] joueurs;
-    private IA[] ennemi;
+    private Player[] players;
+    private IA[] ennemies;
     private Projectile projectile;
     private ProjectileController projectileController;
     private Field field;
     private int score;
     private Text text;
-    public int getScore() {
-    	return this.score;
-    }
-    public GameVue(Text text, Player[] player, IA[] ia, Field field)
+    
 
-    {
-        this.joueurs = player;
-        this.ennemi = ia;
+    public GameVue(Text text, Player[] player, IA[] ia, Field field){
+        this.players = player;
+        this.ennemies = ia;
         this.field=field;
         this.projectile = Projectile.getInstance();
         this.score=0;
@@ -34,108 +31,111 @@ public class GameVue extends Group {
         text.setText("Score: " + this.score);
 
     }
+    
 
-    //Gestion des inputs clavier
+    /*
+     * Gestion des inputs clavier
+     */
     public void getInput(int i, ArrayList<String> input){
         if (i==0 && input.contains("LEFT"))
         {
-            joueurs[i].moveLeft();
-            projectile.withPlayerMove(joueurs[i], -50);
+            players[i].moveLeft();
+            projectile.withPlayerMove(players[i], -50);
         }
         if (i==0 && input.contains("RIGHT"))
         {
-            joueurs[i].moveRight();
-            projectile.withPlayerMove(joueurs[i], -50);
+            players[i].moveRight();
+            projectile.withPlayerMove(players[i], -50);
         }
         if (i==0 && input.contains("UP"))
         {
-            joueurs[i].turnLeft();
+            players[i].turnLeft();
         }
         if (i==0 && input.contains("DOWN"))
         {
-            joueurs[i].turnRight();
+            players[i].turnRight();
         }
         if (i==0 && input.contains("P")){ //Verification de la touche P + remise en place de la balle
-            if(joueurs[i].isTake_ball()){
-                projectile.setX(joueurs[i].getX());
-                projectile.setY(joueurs[i].getY()-55);
+            if(players[i].isTakeBall()){
+                projectile.setX(players[i].getX());
+                projectile.setY(players[i].getY()-55);
             }
         }
         if (i==0 && input.contains("ENTER")){ //Tir du joueur humain
             
-            if(!projectile.getMoving() && joueurs[i].isTake_ball()) {
-            	joueurs[i].shoot();
-                projectileController.startProjectile(projectile, joueurs[i], joueurs[i].getAngle(), field.getGraphicsContext2D());
-                joueurs[i].setTake_ball(false);
+            if(!projectile.getMoving() && players[i].isTakeBall()) {
+            	players[i].shoot();
+                projectileController.startProjectile(projectile, players[i], players[i].getAngle(), field.getGraphicsContext2D());
+                players[i].setTakeBall(false);
             }
         }
 
         if (i==0 && input.contains("Q"))
         {
-            ennemi[i].moveLeft();
-            projectile.withPlayerMove(ennemi[i], 65);
+            ennemies[i].moveLeft();
+            projectile.withPlayerMove(ennemies[i], 65);
         }
         if (i==0 && input.contains("D"))
         {
-            ennemi[i].moveRight();
-            projectile.withPlayerMove(ennemi[i], 65);
+            ennemies[i].moveRight();
+            projectile.withPlayerMove(ennemies[i], 65);
         }
         if (i==0 && input.contains("Z"))
         {
-            ennemi[i].turnLeft();
+            ennemies[i].turnLeft();
         }
         if (i==0 && input.contains("S"))
         {
-            ennemi[i].turnRight();
+            ennemies[i].turnRight();
         }
         if (i==0 && input.contains("P")){ //Verification de la touche P + remise en place de la balle
-            if(ennemi[i].isTake_ball()){
-                projectile.setX(ennemi[i].getX());
-                projectile.setY(ennemi[i].getY()+65);
+            if(ennemies[i].isTakeBall()){
+                projectile.setX(ennemies[i].getX());
+                projectile.setY(ennemies[i].getY()+65);
             }
         }
         if (i==0 && input.contains("SPACE")){
-            if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
-                ennemi[i].shoot();
-                projectileController.throwProjectile(projectile, ennemi[i].getAngle()+180);
-                ennemi[i].setTake_ball(false);
+            if(!projectile.getMoving() && ennemies[i].isTakeBall()) {
+                ennemies[i].shoot();
+                projectileController.throwProjectile(projectile, ennemies[i].getAngle()+180);
+                ennemies[i].setTakeBall(false);
             }
         }
 
         if (i==1 && input.contains("K"))
         {
-            ennemi[i].moveLeft();
-            projectile.withPlayerMove(ennemi[i], 65);
+            ennemies[i].moveLeft();
+            projectile.withPlayerMove(ennemies[i], 65);
         }
         if (i==1 && input.contains("M"))
         {
-            ennemi[i].moveRight();
-            projectile.withPlayerMove(ennemi[i], 65);
+            ennemies[i].moveRight();
+            projectile.withPlayerMove(ennemies[i], 65);
         }
         if (i==1 && input.contains("O"))
         {
-            ennemi[i].turnLeft();
+            ennemies[i].turnLeft();
         }
         if (i==1 && input.contains("L"))
         {
-            ennemi[i].turnRight();
+            ennemies[i].turnRight();
         }
         if (i==1 && input.contains("P")){ //Verification de la touche P + remise en place de la balle
-            if(ennemi[i].isTake_ball()){
-                projectile.setX(ennemi[i].getX());
-                projectile.setY(ennemi[i].getY()+65);
+            if(ennemies[i].isTakeBall()){
+                projectile.setX(ennemies[i].getX());
+                projectile.setY(ennemies[i].getY()+65);
             }
         }
         if (i==1 && input.contains("SHIFT")){
-            if(!projectile.getMoving() && ennemi[i].isTake_ball()) {
-                ennemi[i].shoot();
-                projectileController.throwProjectile(projectile, ennemi[i].getAngle()+180);
-                ennemi[i].setTake_ball(false);
+            if(!projectile.getMoving() && ennemies[i].isTakeBall()) {
+                ennemies[i].shoot();
+                projectileController.throwProjectile(projectile, ennemies[i].getAngle()+180);
+                ennemies[i].setTakeBall(false);
             }
         }
 
         //Gestion des collisions entre projectile et bord du terrain
-		if(projectile.getVue()!=null && projectile.getY()<=ennemi[0].getY() || projectile.getY()>= joueurs[0].getY()) {
+		if(projectile.getVue()!=null && projectile.getY()<=ennemies[0].getY() || projectile.getY()>= players[0].getY()) {
 			projectile.setMoving(false);
 		}
 		if(projectile.getX()<=0) {
@@ -150,26 +150,23 @@ public class GameVue extends Group {
         //Mise a jour du score
         text.setText("Score: " + this.score);
         //Verification de fin de jeu
-        getFinJeu();
+        getEnd();
     }
     
     /*
      * Affiche un message de fin de partie
      */
-    public int getFinJeu() {
-    	if(!joueurs[0].isAlive()) {
+    public void getEnd() {
+    	if(!players[0].isAlive()) {
     		text.setX(field.width/2-60);
     		text.setY(field.height/2);
     		text.setText("Game over");
-    		return 1;
     	}
-    	else if(!ennemi[0].isAlive() && !ennemi[1].isAlive()) {
+    	else if(!ennemies[0].isAlive() && !ennemies[1].isAlive()) {
     		text.setX(field.width/2-50);
     		text.setY(field.height/2);    		
     		text.setText("You win !");
-    		return 2;
     	}
-    	return 0;
     }
 
 	public void scoreUp() {
@@ -177,7 +174,7 @@ public class GameVue extends Group {
 	}
 	
 	/*
-	 * Verifie l'interscetion d'un joueur avec le projectile
+	 * Verifie l'intersection d'un joueur avec le projectile
 	 */
     public boolean Touched(Projectile balle, Sprite p){
         return balle.getBoundingBox().intersects(p.getBoundsInParent());
