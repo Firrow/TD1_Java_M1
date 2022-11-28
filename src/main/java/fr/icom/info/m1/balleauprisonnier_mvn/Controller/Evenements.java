@@ -1,13 +1,11 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Controller;
 
-import fr.icom.info.m1.balleauprisonnier_mvn.Game;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.IA;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.GameVue;
 import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Field;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +19,11 @@ public class Evenements extends Canvas {
 	
 	/** Tableau tracant les evenements */
     ArrayList<String> input = new ArrayList<String>();
-	private GameVue gv;
 	private List<Player> joueurs;
 
 	private Projectile projectile;
     
 	public Evenements(Field field, List<Player> joueurs, GameVue gameVue) {
-		this.gv = gameVue;
 		this.joueurs = joueurs;
 
 	    /** 
@@ -78,56 +74,50 @@ public class Evenements extends Canvas {
 	        {
 	        	field.display();
 				List<Player> playerToRemove = new ArrayList<>();
+				
 	            // Deplacement et affichage des joueurs
-
-
 	        	for (int i = 0; i < joueurs.size(); i++)
 	    	    {
+	        		//On recupere l'input
 					gameVue.getInput(i, input);
-	        		joueurs.get(i).getPlayerVue().display(joueurs.get(i));
+					
+					//Affichage des fleches de direction si le joueur est en vie
+	        		if(joueurs.get(i).isAlive()) joueurs.get(i).getPlayerVue().display(joueurs.get(i));
 
 					projectile=Projectile.getInstance();
-					System.out.println("joueur " + i + " : " + joueurs.get(i).isTake_ball());
-					//System.out.println(projectile.getMoving());
 
+					//Gestion des collisions joueurs et du score
 					if(projectile != null && projectile.getMoving()){
-						//System.out.println("PROJECTILE !");
+						//Le joueur en vie est touche
 						if(gameVue.Touched(projectile, joueurs.get(i).getSprite()) && joueurs.get(i).isAlive()){
-							joueurs.get(i).TakeBall(input);	//appelé joueurs.get(i).prendBalle
+							joueurs.get(i).TakeBall(input);
 							if(!joueurs.get(i).isTake_ball()){
-								//System.out.println(joueurs.get(i).isTake_ball());
-								
 								if(joueurs.get(i) instanceof IA) {
 									gameVue.scoreUp();
 								}
+								
 								joueurs.get(i).killPlayer();
 								playerToRemove.add(joueurs.get(i));
-
 							}
+							
 							else{
 								projectile.setMoving(false);
 							}
 						}
 					}
-
+					//Le joueur reprend la balle
 					else if(projectile.getVue() != null && !projectile.getMoving()){
-						System.out.println("BALLE STOPPEEEEEEEEEEEEEEE");
 						if(gameVue.Touched(projectile, joueurs.get(i).getSprite()) && joueurs.get(i).isAlive() && !joueurs.get(i).isTake_ball()){
-							//projectile.setDirection(projectile.getDirection()+180);
-							joueurs.get(i).setTake_ball(true);
-							/*projectile.setX(joueurs.get(i).getX());
-							projectile.setY(joueurs.get(i).getY());*/// A GARDER QUAND JOUEUR APPUIE SUR P
-							System.out.println("JOUEUR A LA BALLE");
-						}
-							
-					}
-	    	    
-	    	    }
 
+							joueurs.get(i).setTake_ball(true);
+						}		
+					}
+	    	    }
 				removeDeadPlayers();
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement
 	}
+	
 	public void removeDeadPlayers(){
 		for (Player player : joueurs) {
 			if(!player.isAlive()){

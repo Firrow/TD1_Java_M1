@@ -14,22 +14,15 @@ public class PlayerVue {
     public double x;
     public double y;
 
-
-    public double getX() {
-        return this.x;
-    }
-
-    public double setX() {
-        return this.x = x;
-    }
-
-    public double getY() {
-        return this.y;
-    }
-
-    public double setY() {
-        return this.y = y;
-    }
+    
+    /*
+     * Accesseurs et mutateurs
+     */
+    public Image getdirArrowPlayer() { return this.dirArrowPlayer; }
+    public double getX() { return this.x; }
+    public void setX(double x) { this.x = x; }
+    public double getY() { return this.y; }
+    public void setY(double y) { this.y = y; }
     public double getAngle() { return angle; }
     public void setAngle(double angle) { this.angle = angle; }
 
@@ -43,7 +36,6 @@ public class PlayerVue {
         this.angle = anglePlayer;
         this.x = xPlayer;
         this.y = yPlayer;
-        /*valeur variable player*/
     }
 
     public Sprite getSprite() {
@@ -72,7 +64,6 @@ public class PlayerVue {
     }
 
     public void spriteAnimate(Player player){
-        //System.out.println("Animating sprite");
         if(!sprite.isRunning) {sprite.playContinuously();}
         sprite.setX(player.getX());
         sprite.setY(player.getY());
@@ -80,13 +71,10 @@ public class PlayerVue {
 
     public void display(Player player)
     {
-        //System.out.println("called in display");
-//        System.out.println(player.getAngle());
-
-        gc.save(); // saves the current state on stack, including the current transform
+        gc.save(); // sauvegarde l'etat courant dans la pile
         rotate(gc, player.getAngle(), player.getX() + dirArrowPlayer.getWidth() / 2, player.getY() + dirArrowPlayer.getHeight() / 2);
         gc.drawImage(dirArrowPlayer, player.getX(), player.getY());
-        gc.restore(); // back to original state (before rotation)
+        gc.restore(); // revient a l'etat d'origine (avant la rotation)
     }
 
     private void rotate(GraphicsContext gc, double angle, double px, double py) {

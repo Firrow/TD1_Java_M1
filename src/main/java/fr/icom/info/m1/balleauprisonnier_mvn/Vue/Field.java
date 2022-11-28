@@ -1,22 +1,8 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Vue;
 
-
-import java.util.ArrayList;
-
-import fr.icom.info.m1.balleauprisonnier_mvn.Model.Human;
-import fr.icom.info.m1.balleauprisonnier_mvn.Model.IA;
-import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
-import fr.icom.info.m1.balleauprisonnier_mvn.Vue.PlayerVue;
-import fr.icom.info.m1.balleauprisonnier_mvn.Vue.Sprite;
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 /**
  * Classe gerant le terrain de jeu.

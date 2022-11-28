@@ -13,11 +13,10 @@ public class ProjectileController {
 		
 	}
     
+	/*
+	 * Creation du projectile
+	 */
 	public void startProjectile(Projectile projectile, Player joueur, double angle, GraphicsContext gc) {
-		/*if(!projectile.getMoving()) {
-			projectile.setDirection(angle);
-	        projectile.setMoving(true);
-        } */
         projectileVue= new ProjectileVue(gc);
 
         projectile = Projectile.getInstance();
@@ -30,8 +29,10 @@ public class ProjectileController {
         projectile.setMoving(true);
 	}
 
+	/*
+	 * Deplace le projectile et modifie son modele puis fait appel à sa vue
+	 */
 	public void moveProjectile(Projectile projectile, ProjectileVue projectileVue) {
-		//System.out.println("TIIIIRE");
 		if(projectileVue!=null) {
 			if (projectile.getMoving()) {
 				projectile.moveProjectile();
@@ -40,23 +41,11 @@ public class ProjectileController {
 		}
 	}
 
+	/*
+	 * Change la direction du projectile et le lance
+	 */
 	public void throwProjectile(Projectile projectile, double angle) {
-        /*if(!projectile.getMoving()) {
-            projectile.setDirection(angle);
-            projectile.setMoving(true);
-        } */
 		projectile.setMoving(true);
 		projectile.setDirection(angle);
-		//System.out.println(angle);
-
 	}
-	
-	/*public void throwProjectile(Projectile projectile, ProjectileVue projectileVue) {
-		if(projectileVue!=null) {
-	        if (projectile.getMoving()) {
-	        	projectile.moveProjectile();
-	        }
-        projectileVue.display(projectile);
-		}
-	}*/
 }
