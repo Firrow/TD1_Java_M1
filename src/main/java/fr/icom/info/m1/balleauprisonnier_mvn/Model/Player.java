@@ -86,21 +86,16 @@ public class Player
 		playerVue.getSprite().playShoot();
 	}
 
-	public void boost()
-	{
-		x += step*2;
-		playerVue.spriteAnimate(this);
-	}
 
 	/*
-	 * Méthode qui supprime le joueur touché de la liste de joueur
+	 * Mï¿½thode qui supprime le joueur touchï¿½ de la liste de joueur
 	 */
 	public void killPlayer() {
 		alive = false;
 	}
 
 	/*
-	 * Méthode qui permet au joueur de récuperer la balle
+	 * Mï¿½thode qui permet au joueur de rï¿½cuperer la balle
 	 */
 	public void takeBall(ArrayList<String> input) {
 		if(input.contains("P")){
