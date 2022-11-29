@@ -107,10 +107,4 @@ public class Sprite extends ImageView {
         getTimeline().setOnFinished(e -> playContinuously());
         getTimeline().playFromStart();
     }
-
-    public void stop() {
-        frameCounter.set(0);
-        setViewport(walkClips[frameCounter.get()]);
-        walkTimeline.stop();
-    }
 }

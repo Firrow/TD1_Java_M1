@@ -19,6 +19,9 @@ public class PlayerVue {
      * Accesseurs et mutateurs
      */
     public Image getdirArrowPlayer() { return this.dirArrowPlayer; }
+    public Sprite getSprite() {
+        return this.sprite;
+    }
     public double getX() { return this.x; }
     public void setX(double x) { this.x = x; }
     public double getY() { return this.y; }
@@ -35,10 +38,6 @@ public class PlayerVue {
         this.angle = anglePlayer;
         this.x = xPlayer;
         this.y = yPlayer;
-    }
-
-    public Sprite getSprite() {
-        return this.sprite;
     }
 
     public ImageView createArrow(String side){
