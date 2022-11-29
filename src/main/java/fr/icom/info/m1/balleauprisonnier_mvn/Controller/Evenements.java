@@ -30,7 +30,7 @@ public class Evenements extends Canvas {
 	     * quand une touche est pressee on la rajoute a la liste d'input
 	     *   
 	     */
-	    field.setOnKeyPressed( //a mettre dans GameVueue
+	    field.setOnKeyPressed( //a mettre dans GameVue
 	    		new EventHandler<KeyEvent>()
 			{
 				public void handle(KeyEvent e)
