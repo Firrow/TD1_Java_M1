@@ -26,7 +26,6 @@ public class Game {
     List<Player> players = new ArrayList<>();
 
     Field field;
-    Projectile projectile;
     private double width;
     private double height;
     private GraphicsContext gc;
@@ -38,7 +37,7 @@ public class Game {
     public List<Player> getPlayers() {return players;}
     public IA[] getIA() {return enemies;}
     public Human[] getHuman() {return humans;}
-    public Projectile getProjectile() {return projectile;}
+
 
 
     public Game(Scene scene, double w, double h, Field field)
